@@ -1,0 +1,13 @@
+Order Totals.xlsm
+env
+Amazon exports
+.vscode
+__pycache__
+build
+dist
+amazon_accounting_report.spec
+amzn_inventory.db
+amzn_inventory_b4lrun.db
+amzn_inventory_lrun.db
+project_diffs.txt
+orders_report.py
