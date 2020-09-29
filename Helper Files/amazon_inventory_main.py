@@ -22,7 +22,7 @@ else:
 
 # Logging config:
 log_path = os.path.join(get_output_dir(client_file=False), 'amazon_inventory.log')
-logging.basicConfig(handlers=[logging.FileHandler(log_path, 'a', 'utf-8')], level=logging.DEBUG)
+logging.basicConfig(handlers=[logging.FileHandler(log_path, 'a', 'utf-8')], level=logging.INFO)
 
 
 def get_cleaned_orders(source_file:str) -> list:
