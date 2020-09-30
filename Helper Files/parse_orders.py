@@ -66,7 +66,6 @@ class ParseOrders():
 
     def exit_no_new_orders(self):
         '''Suspend program, warn VBA if no new orders were found'''
-        logging.info(f'INSIDE EXIT_NO_NEW_ORDERS. Length of self.labels: {len(self.labels)}. type validation: {type(self.labels)}')
         if len(self.labels) == 0:
             logging.info(f'No new orders found. Terminating, closing database connection, alerting VBA.')
             self.db_client.close_connection()
