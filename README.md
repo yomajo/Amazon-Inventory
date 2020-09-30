@@ -22,9 +22,9 @@ Project is heavily based on [previous work](https://github.com/yomajo/Amazon-Ord
 
 Example of output helper file:
 
-![Output file sample](https://user-images.githubusercontent.com/45366313/87704500-286d3b80-c7a5-11ea-9877-2e83342dba0c.png)
+![Output file sample](https://user-images.githubusercontent.com/45366313/94644775-ddb68680-02f2-11eb-9d68-e97252068f22.png)
 
-s
+
 ## Requirements
 
 **Python 3.7+** 
