@@ -73,12 +73,13 @@ class ParseOrders():
             sys.exit()
 
     def export_inventory_helper_file(self):
-        '''exports txt file with sorted custom labels (sku's) by quantity'''
+        '''exports txt file with sorted custom labels (sku's) by quantity, launches file'''
         export_labels = self.get_orders_labels_obj()
         with open(self.inventory_file, 'w', encoding='utf-8') as f:
             for label, qty in export_labels:
                 line = f'{label:<20} {qty:>4}\n'
                 f.write(line)
+        os.startfile(self.inventory_file)
         logging.info(f'Export completed! TXT inventory helper file {os.path.basename(self.inventory_file)} successfully created.')
         
     def push_orders_to_db(self):
