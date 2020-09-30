@@ -20,7 +20,7 @@ Project is heavily based on [previous work](https://github.com/yomajo/Amazon-Ord
 
 ## Output File Sample
 
-Example of output helper file:
+Example of [output helper file](https://github.com/yomajo/Amazon-Inventory/blob/master/Amazon%20Inventory%20Reduction%202020.09.30%2007.57.txt):
 
 ![Output file sample](https://user-images.githubusercontent.com/45366313/94644775-ddb68680-02f2-11eb-9d68-e97252068f22.png)
 
