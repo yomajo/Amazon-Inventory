@@ -5,7 +5,7 @@ Amazon exports
 __pycache__
 build
 dist
-amazon_accounting_report.spec
+amazon_inventory_main.spec
 amzn_inventory.db
 amzn_inventory_b4lrun.db
 amzn_inventory_lrun.db
@@ -16,3 +16,4 @@ CSV Files.lnk
 Backups
 Custom Labels Sorter.xlsm
 csvs
+amazon_inventory_main.exe
