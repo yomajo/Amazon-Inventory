@@ -22,7 +22,7 @@ Project is heavily based on [previous work](https://github.com/yomajo/Amazon-Ord
 
 Example of output helper excel file:
 
-![Output file sample]()
+![Output file sample](https://user-images.githubusercontent.com/45366313/95343392-2527ae80-08c1-11eb-8eb2-4a9cecb29986.png)
 
 
 ## Requirements
