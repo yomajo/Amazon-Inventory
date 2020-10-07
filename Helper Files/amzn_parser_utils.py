@@ -1,3 +1,4 @@
+from openpyxl.utils import get_column_letter
 from datetime import datetime
 import platform
 import logging
@@ -83,6 +84,12 @@ def simplify_date(date_str : str) -> str:
     except ValueError:
         logging.warning(f'Unable to return simplified version of date: {date_str}. Returning raw format instead')
         return date_str
+
+def col_to_letter(col : int, zero_indexed=True) -> str:
+    '''returns column letter from worksheet column index'''
+    if zero_indexed:
+        col += 1
+    return get_column_letter(col)
 
 def export_json_data(dataobj : dict, json_path : str ='export.json'):
     '''exports dataobj in json format'''

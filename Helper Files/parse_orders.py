@@ -1,4 +1,5 @@
 from amzn_parser_utils import get_output_dir
+from helper_file import HelperFile
 from collections import defaultdict
 from datetime import datetime
 import logging
@@ -28,26 +29,39 @@ class ParseOrders():
         '''constructs cls variable of output abs file path'''
         output_dir = get_output_dir()
         date_stamp = datetime.today().strftime("%Y.%m.%d %H.%M")
-        self.inventory_file = os.path.join(output_dir, f'Amazon Inventory Reduction {date_stamp}.txt')
+        self.inventory_file = os.path.join(output_dir, f'Amazon Inventory Reduction {date_stamp}.xlsx')
     
-    def get_orders_labels_obj(self) -> dict:
-        '''returns a dictionary/counter of unique codes in form: {'code1':5, 'code2':3, ... 'coden':2}'''    
-        self.labels = defaultdict(int)
-        for order in self.all_orders:
+    def get_sorted_export_obj(self, orders:list):
+        '''returns sorted object: export_obj = {'sku1': {
+                                                    'item': 'item_name1',
+                                                    'quantity: 2},
+                                                'sku3': {
+                                                    'item': 'item_name2',
+                                                    'quantity: 5}, ...}'''
+        export_obj = {}
+        for order in orders:
             try:
-                self.labels[order['sku']] += self.get_order_quantity(order)
+                # Retrieving order values of interest:
+                item = order['product-name']
+                sku = order['sku']
+                quantity = self.get_order_quantity(order)
             except KeyError:
-                logging.exception(f'Could not find \'sku\' in order keys. Order: {order}\nClosing connection to database, alerting VBA, exiting...')
+                logging.exception(f'Could not find \'sku\'or \'product-name\' in order keys. Order: {order}\nClosing connection to database, alerting VBA, exiting...')
                 self.db_client.close_connection()
                 print(VBA_KEYERROR_ALERT)
                 sys.exit()
-        self.exit_no_new_orders()
-        return self._sort_labels(self.labels)
-    
+
+            if sku not in export_obj.keys():
+                export_obj[sku] = {'item':item, 'quantity':quantity}
+            else:
+                export_obj[sku]['quantity'] += quantity
+        self.exit_no_new_orders(export_obj)
+        return self._sort_labels(export_obj)
+
     @staticmethod
     def _sort_labels(labels:dict) -> list:
         '''sorts default dict by descending quantities. Returns list of tuples'''
-        return sorted(labels.items(), key=lambda lab_qty_tuple: lab_qty_tuple[1], reverse=True)
+        return sorted(labels.items(), key=lambda sku_dict: sku_dict[1]['quantity'], reverse=True)
 
     def get_order_quantity(self, order:dict) -> int:
         '''returns 'quantity-purchased' order key value in integer form'''
@@ -64,23 +78,26 @@ class ParseOrders():
             print(VBA_KEYERROR_ALERT)
             sys.exit()
 
-    def exit_no_new_orders(self):
+    def exit_no_new_orders(self, export_obj):
         '''Suspend program, warn VBA if no new orders were found'''
-        if len(self.labels) == 0:
+        if len(export_obj) == 0:
             logging.info(f'No new orders found. Terminating, closing database connection, alerting VBA.')
             self.db_client.close_connection()
             print(VBA_NO_NEW_JOB)
             sys.exit()
 
     def export_inventory_helper_file(self):
-        '''exports txt file with sorted custom labels (sku's) by quantity, launches file'''
-        export_labels = self.get_orders_labels_obj()
-        with open(self.inventory_file, 'w', encoding='utf-8') as f:
-            for label, qty in export_labels:
-                line = f'{label:<20} {qty:>4}\n'
-                f.write(line)
-        os.startfile(self.inventory_file)
-        logging.info(f'Export completed! TXT inventory helper file {os.path.basename(self.inventory_file)} successfully created.')
+        '''creates HelperFile instance, and exports data in xlsx format'''
+        export_obj = self.get_sorted_export_obj(self.all_orders)
+        try:
+            HelperFile(export_obj).export(self.inventory_file)
+            os.startfile(self.inventory_file)
+            logging.info(f'Helper file {os.path.basename(self.inventory_file)} successfully created.')
+        except:
+            logging.exception(f'Unexpected error creating helper file. Closing database connection, alerting VBA, exiting...')
+            self.db_client.close_connection()
+            print(VBA_ERROR_ALERT)
+            sys.exit()
         
     def push_orders_to_db(self):
         '''adds all orders in this class to orders table in db'''
@@ -95,7 +112,7 @@ class ParseOrders():
             print(f'Due to flag testing value: {testing}. Order export and adding to database suspended. Change behaviour in export_orders method in ParseOrders class')
             print('ENABLED REPORT EXPORT WHILE TESTING')
             self.export_inventory_helper_file()
-            self.push_orders_to_db()
+            # self.push_orders_to_db()
             return
         self.export_inventory_helper_file()
         self.push_orders_to_db()

@@ -2,7 +2,7 @@
 
 ## Description
 
-Currently Amazon seller manages inventory in google sheets. Python orders parser is implemented and launched from Excel. Program parses all new loaded orders and outputs a simple helper file to reduce inventory from the items sold.
+Currently Amazon seller manages inventory in google sheets. Python orders parser is implemented and launched from Excel. Program parses all new loaded orders and outputs excel helper file to reduce inventory from the items sold.
 
 Project is heavily based on [previous work](https://github.com/yomajo/Amazon-Orders-Parser).
 
@@ -20,9 +20,9 @@ Project is heavily based on [previous work](https://github.com/yomajo/Amazon-Ord
 
 ## Output File Sample
 
-Example of [output helper file](https://github.com/yomajo/Amazon-Inventory/blob/master/Amazon%20Inventory%20Reduction%202020.09.30%2007.57.txt):
+Example of output helper excel file:
 
-![Output file sample](https://user-images.githubusercontent.com/45366313/94644775-ddb68680-02f2-11eb-9d68-e97252068f22.png)
+![Output file sample]()
 
 
 ## Requirements
