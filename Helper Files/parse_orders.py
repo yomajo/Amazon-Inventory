@@ -90,7 +90,7 @@ class ParseOrders():
         '''creates HelperFile instance, and exports data in xlsx format'''
         export_obj = self.get_sorted_export_obj(self.all_orders)
         try:
-            HelperFile(self.export_obj).export(self.inventory_file)
+            HelperFile(export_obj).export(self.inventory_file)
             os.startfile(self.inventory_file)
             logging.info(f'Helper file {os.path.basename(self.inventory_file)} successfully created.')
         except:
