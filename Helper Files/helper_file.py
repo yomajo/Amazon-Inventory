@@ -5,7 +5,7 @@ import os
 
 # GLOBAL VARIABLES
 SUMMARY_SHEET_NAME = 'SKU codes'
-HEADERS = ['SKU', 'Quantity', 'Item']
+HEADERS = ['sku', 'quantity', 'item']
 BOLD_STYLE = openpyxl.styles.Font(bold=True, name='Calibri')
 
 
