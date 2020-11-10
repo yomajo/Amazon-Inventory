@@ -9,10 +9,11 @@ import os
 
 
 # GLOBAL VARIABLES
+EXPORT_FILE = 'Amazon Inventory Reduction.xlsx'
+SHEET_NAME = 'SKU codes'
 VBA_ERROR_ALERT = 'ERROR_CALL_DADDY'
 VBA_NO_NEW_JOB = 'NO NEW JOB'
 VBA_KEYERROR_ALERT = 'ERROR_IN_SOURCE_HEADERS'
-
 
 class ParseOrders():
     '''Input: orders as list of dicts, parses orders, forms sorted export obj;
@@ -28,8 +29,7 @@ class ParseOrders():
     def _prepare_filepath(self):
         '''constructs cls variable of output abs file path'''
         output_dir = get_output_dir()
-        date_stamp = datetime.today().strftime("%Y.%m.%d %H.%M")
-        self.inventory_file = os.path.join(output_dir, f'Amazon Inventory Reduction {date_stamp}.xlsx')
+        self.inventory_file = os.path.join(output_dir, EXPORT_FILE)
     
     def get_sorted_export_obj(self, orders:list):
         '''returns sorted object: export_obj = {'sku1': {
@@ -108,8 +108,8 @@ class ParseOrders():
         '''Summing up tasks inside ParseOrders class'''
         self._prepare_filepath()
         if testing:
-            logging.info(f'Due to flag testing value: {testing}. Order export and adding to database suspended. Change behaviour in export_orders method in ParseOrders class')
-            print(f'Due to flag testing value: {testing}. Order export and adding to database suspended. Change behaviour in export_orders method in ParseOrders class')
+            logging.info(f'Testing mode: {testing}. Change behaviour in export_orders method in ParseOrders class')
+            print(f'Testing mode: {testing}. Change behaviour in export_orders method in ParseOrders class')
             print('ENABLED REPORT EXPORT WHILE TESTING')
             self.export_inventory_helper_file()
             # self.push_orders_to_db()
