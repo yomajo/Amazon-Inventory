@@ -1,27 +1,29 @@
-from amzn_parser_utils import col_to_letter
+from amzn_parser_utils import col_to_letter, sort_by_quantity
 from openpyxl.styles import Alignment
 import openpyxl
 import os
 
+
 # GLOBAL VARIABLES
 SUMMARY_SHEET_NAME = 'SKU codes'
+SKU_MAPPING_SHEET_NAME = 'Codes Mapping'
 HEADERS = ['sku', 'quantity', 'item']
 BOLD_STYLE = openpyxl.styles.Font(bold=True, name='Calibri')
 
 
-class HelperFile():
+class HelperFileCreate():
     '''accepts export data dictionary as argument, creates formatted xlsx file.
     Class does not include error handling and that should be carried out outside of this class scope
 
     Main method: export() - takes argument of target workbook name (path) and pushes
     export_obj accepted by class to single sheet'''
     
-    def __init__(self, export_obj):
-        self.export_obj = export_obj
+    def __init__(self, export_obj:dict):
+        self.sorted_export_obj = sort_by_quantity(export_obj)
         self.col_widths = {}
 
     def export(self, wb_name : str):
-        '''Creates workbook, and exports self.export_obj object to single sheet, saves new workbook'''
+        '''Creates workbook, and exports self.sorted_export_obj object to single sheet, saves new workbook'''
         self.wb = openpyxl.Workbook()
         ws = self.wb.active
         ws.freeze_panes = ws['A2']
@@ -46,8 +48,8 @@ class HelperFile():
         self.row_cursor += 1
 
     def push_data(self, ws : object):
-        '''unpacks self.export_obj to ws sheet'''
-        for sku_data in self.export_obj:
+        '''unpacks self.sorted_export_obj to ws sheet'''
+        for sku_data in self.sorted_export_obj:
             ws.cell(self.row_cursor, 1).value = sku_data[0]
             ws.cell(self.row_cursor, 2).value = sku_data[1]['quantity']
             ws.cell(self.row_cursor, 2).alignment = Alignment(horizontal='left')
@@ -73,6 +75,14 @@ class HelperFile():
         for col_letter in col_widths:
             adjusted_width = col_widths[col_letter] + 4
             ws.column_dimensions[col_letter].width = adjusted_width
+
+class HelperFileUpdate(HelperFileCreate):
+    '''handles helper file updating'''
+
+    def update_workbook(self, inventory_file):
+        '''main cls method. Handles reading, merging of current and incoming data, pushes updated data'''
+        pass
+
 
 if __name__ == "__main__":
     pass
