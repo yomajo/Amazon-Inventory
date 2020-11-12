@@ -119,7 +119,9 @@ def export_json_data(dataobj : dict, json_path : str ='export.json'):
 
 def sort_by_quantity(labels:dict) -> list:
     '''sorts {'sku1': {'item': 'item_name1', 'quantity: 2}, 'sku3': {'item': 'item_name2', 'quantity: 5}, ...} type obj
-    by descending quantities. Returns list of tuples'''
+    by descending quantities. Returns list of tuples:
+    
+    [('sku1', {'item': 'SampleName1', 'quantity': 12}), ('sku2', {'item': 'SampleName2', 'quantity': 9}), ('sku3', {'item': 'SampleName3', 'quantity': 5})]'''
     return sorted(labels.items(), key=lambda sku_dict: sku_dict[1]['quantity'], reverse=True)
 
 
