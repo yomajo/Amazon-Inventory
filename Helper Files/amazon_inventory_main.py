@@ -15,7 +15,7 @@ VBA_ERROR_ALERT = 'ERROR_CALL_DADDY'
 VBA_KEYERROR_ALERT = 'ERROR_IN_SOURCE_HEADERS'
 VBA_OK = 'EXPORTED_SUCCESSFULLY'
 if is_windows_machine():
-    TEST_AMZN_EXPORT_TXT = r'C:\Coding\Ebay\Working\Backups\Amazon exports\amzn2.txt'
+    TEST_AMZN_EXPORT_TXT = r'C:\Coding\Ebay\Working\Backups\Amazon exports\Collected exports\export 2020.06.17.txt'
 else:
     TEST_AMZN_EXPORT_TXT = r'/home/devyo/Coding/Git/Amazon Inventory/Amazon exports/run1.txt'
 
@@ -75,8 +75,6 @@ def main(testing, amazon_export_txt_path):
         print('RUNNING IN TESTING MODE')
         txt_path = amazon_export_txt_path
     if os.path.exists(txt_path):
-        logging.info('file exists, continuing to processing...')
-        print(f'File {os.path.basename(txt_path)} exists')
         cleaned_source_orders = get_cleaned_orders(txt_path)
         parse_export_orders(testing, cleaned_source_orders, txt_path)
         print(VBA_OK)
