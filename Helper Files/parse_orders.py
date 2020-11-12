@@ -1,5 +1,5 @@
 from amzn_parser_utils import get_output_dir
-from helper_file import HelperFile
+from helper_file import HelperFileCreate, HelperFileUpdate
 from collections import defaultdict
 from datetime import datetime
 import logging
@@ -16,7 +16,7 @@ VBA_NO_NEW_JOB = 'NO NEW JOB'
 VBA_KEYERROR_ALERT = 'ERROR_IN_SOURCE_HEADERS'
 
 class ParseOrders():
-    '''Input: orders as list of dicts, parses orders, forms sorted export obj;
+    '''Input: orders as list of dicts, parses orders, forms export obj;
     exports helper txt file with custom labels and corresponding quantities
     Interacts with database client instance; main method:
     
@@ -31,8 +31,8 @@ class ParseOrders():
         output_dir = get_output_dir()
         self.inventory_file = os.path.join(output_dir, EXPORT_FILE)
     
-    def get_sorted_export_obj(self, orders:list):
-        '''returns sorted object: export_obj = {'sku1': {
+    def get_export_obj(self, orders:list):
+        '''returns export object: export_obj = {'sku1': {
                                                     'item': 'item_name1',
                                                     'quantity: 2},
                                                 'sku3': {
@@ -56,12 +56,7 @@ class ParseOrders():
             else:
                 export_obj[sku]['quantity'] += quantity
         self.exit_no_new_orders(export_obj)
-        return self._sort_labels(export_obj)
-
-    @staticmethod
-    def _sort_labels(labels:dict) -> list:
-        '''sorts default dict by descending quantities. Returns list of tuples'''
-        return sorted(labels.items(), key=lambda sku_dict: sku_dict[1]['quantity'], reverse=True)
+        return export_obj
 
     def get_order_quantity(self, order:dict) -> int:
         '''returns 'quantity-purchased' order key value in integer form'''
@@ -86,15 +81,36 @@ class ParseOrders():
             print(VBA_NO_NEW_JOB)
             sys.exit()
 
-    def export_inventory_helper_file(self):
-        '''creates HelperFile instance, and exports data in xlsx format'''
-        export_obj = self.get_sorted_export_obj(self.all_orders)
+    def export_update_inventory_helper_file(self):
+        '''Depending on file existence CREATES or UPDATES helper file via different functions'''
+        export_obj = self.get_export_obj(self.all_orders)
+        if os.path.exists(self.inventory_file):
+            logging.debug(f'{self.inventory_file} found. Updating...')
+            self.update_inventory_file(export_obj)
+        else:
+            logging.debug(f'{self.inventory_file} not found. Creating file from scratch...')
+            self.create_inventory_file(export_obj)
+    
+    def update_inventory_file(self, export_obj:dict):
+        '''creates HelperFileUpdate instance, and updates data in self.inventory_file xlsx file'''
         try:
-            HelperFile(export_obj).export(self.inventory_file)
+            HelperFileUpdate(export_obj).update_workbook(self.inventory_file)
+            logging.info(f'Helper file {os.path.basename(self.inventory_file)} successfully updated, opening....')
             os.startfile(self.inventory_file)
-            logging.info(f'Helper file {os.path.basename(self.inventory_file)} successfully created.')
-        except:
-            logging.exception(f'Unexpected error creating helper file. Closing database connection, alerting VBA, exiting...')
+        except Exception as e:
+            logging.exception(f'Unexpected error UPDATING helper file. Closing database connection, alerting VBA, exiting... Last error: {e}')
+            self.db_client.close_connection()
+            print(VBA_ERROR_ALERT)
+            sys.exit()
+
+    def create_inventory_file(self, export_obj:dict):
+        '''creates HelperFileCreate instance, and exports data in xlsx format'''
+        try:
+            HelperFileCreate(export_obj).export(self.inventory_file)
+            logging.info(f'Helper file {os.path.basename(self.inventory_file)} successfully created, opening...')
+            os.startfile(self.inventory_file)
+        except Exception as e:
+            logging.exception(f'Unexpected error CREATING helper file. Closing database connection, alerting VBA, exiting... Last error: {e}')
             self.db_client.close_connection()
             print(VBA_ERROR_ALERT)
             sys.exit()
@@ -111,10 +127,10 @@ class ParseOrders():
             logging.info(f'Testing mode: {testing}. Change behaviour in export_orders method in ParseOrders class')
             print(f'Testing mode: {testing}. Change behaviour in export_orders method in ParseOrders class')
             print('ENABLED REPORT EXPORT WHILE TESTING')
-            self.export_inventory_helper_file()
+            self.export_update_inventory_helper_file()
             # self.push_orders_to_db()
             return
-        self.export_inventory_helper_file()
+        self.export_update_inventory_helper_file()
         self.push_orders_to_db()
 
 if __name__ == "__main__":
