@@ -16,7 +16,8 @@ Project is heavily based on [previous work](https://github.com/yomajo/Amazon-Ord
 * Filters out orders already processed before (present in database)
 * Logs, backups database;
 * Automatic database self-flushing of records as defined by `ORDERS_ARCHIVE_DAYS` in [orders_db.py](https://github.com/yomajo/Amazon-Inventory/blob/master/Helper%20Files/orders_db.py);
-* Creates a helper file to aid inventory management.
+* Creates a helper file to aid inventory management;
+* Helper file is updated with items details from new orders on subsequent loads. 
 
 ## Output File Sample
 
@@ -30,3 +31,11 @@ Example of output helper excel file:
 **Python 3.7+** 
 
 ``pip install requirements.txt``
+
+## Compile executable
+
+Within "Helper Files" directory:
+
+``pyinstaller -w -F -i Python.ico amazon_inventory_main.py``
+
+which will output ``amazon_inventory_main.exe`` in ``dist`` folder.
