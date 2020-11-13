@@ -7,6 +7,7 @@ import os
 
 
 # GLOBAL VARIABLES
+VBA_ALREADY_OPEN_ERROR = 'AMAZON WORKBOOK OPEN'
 SUMMARY_SHEET_NAME = 'SKU codes'
 SKU_MAPPING_SHEET_NAME = 'Codes Mapping'
 HEADERS = ['sku', 'quantity', 'item']
@@ -109,10 +110,13 @@ class HelperFileUpdate():
             logging.info(f'Writing updated values done. Saving, closing...')
             wb.save(inventory_file)
             wb.close()
+        except PermissionError as e:
+            logging.critical(f'Workbook {inventory_file} already open. Err: {e}')
+            print(VBA_ALREADY_OPEN_ERROR)
+            raise Exception('Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling')
         except Exception as e:
             logging.critical(f'Errors inside HelperFileUpdate.updateworkbook Errr: {e}. Closing wb without saving')
             wb.close()
-            logging.warning(f'Raising error, to shutdown db connection, warn VBA in ParseOrders')
             raise Exception('Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling')
         
     @staticmethod
