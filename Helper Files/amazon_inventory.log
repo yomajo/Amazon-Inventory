@@ -1,0 +1,13 @@
+﻿NEW RUN STARTING: 2021.01.13 17:54
+INFO:root:Returning 1174/1174 new/loaded orders for further processing
+INFO:root:After checking with database, further processing: 1174 new orders
+INFO:root:Finished mapping and correcting q-ties for incoming orders. Returning total 1174 orders
+INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
+INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 380 distinct sku codes / data rows excl. headers
+INFO:root:Mapped ws sku's with custom labels: sku count: 380 vs mapped list: 380 after mapping
+INFO:root:Writing updated values done. Saving, closing...
+INFO:root:Helper file Amazon Inventory Reduction.xlsx successfully updated, opening....
+INFO:root:
+RUN ENDED: 2021.01.13 17:54
+
