@@ -1,4 +1,5 @@
-from amzn_parser_utils import get_output_dir, get_last_used_row_col, col_to_letter, sort_by_quantity
+from amzn_parser_utils import get_output_dir, get_last_used_row_col, col_to_letter, sort_by_quantity, get_inner_quantity_and_custom_label
+from constants import QUANTITY_PATTERN, VBA_ALREADY_OPEN_ERROR, SHEET_NAME, HEADERS
 from openpyxl.styles import Alignment
 from shutil import copy
 import logging
@@ -7,10 +8,6 @@ import os
 
 
 # GLOBAL VARIABLES
-VBA_ALREADY_OPEN_ERROR = 'AMAZON WORKBOOK OPEN'
-SUMMARY_SHEET_NAME = 'SKU codes'
-SKU_MAPPING_SHEET_NAME = 'Codes Mapping'
-HEADERS = ['sku', 'quantity', 'item']
 BOLD_STYLE = openpyxl.styles.Font(bold=True, name='Calibri')
 
 
@@ -30,9 +27,8 @@ class HelperFileCreate():
         self.wb = openpyxl.Workbook()
         ws = self.wb.active
         ws.freeze_panes = ws['A2']
-        ws.title = SUMMARY_SHEET_NAME
+        ws.title = SHEET_NAME
         self.fill_sheet(ws)
-        self.wb.create_sheet(SKU_MAPPING_SHEET_NAME)
         self.wb.save(wb_name)
         self.wb.close()
     
@@ -80,29 +76,33 @@ class HelperFileCreate():
             adjusted_width = col_widths[col_letter] + 4
             ws.column_dimensions[col_letter].width = adjusted_width
 
+
 class HelperFileUpdate():
-    '''accepts export data dictionary as argument.
+    '''Input args: export data as dict, mapping_dict as dict
     Class includes error handling, but raises Exception to hit outside error handler to close db connection and alert VBA.
 
-    Main method: update_workbook() - takes argument of workbook path, reads contents from SUMMARY_SHEET_NAME, cleans sheet,
+    Main method: update_workbook() - takes argument of workbook path, reads contents, maps sku-custom labels,
+    corrects quantities, from SHEET_NAME, cleans sheet,
     merges current contents with incoming data in export_obj and pushes updated values'''
     
-    def __init__(self, export_obj:dict):
+    def __init__(self, export_obj:dict, mapping_dict:dict):
         '''Different from self.export_obj in HelperFileCreate. Stil dict of dicts at this point'''
         self.export_obj = export_obj
+        self.mapping_dict = mapping_dict
 
     def update_workbook(self, inventory_file):
         '''main cls method. Handles reading, merging of current and incoming data, pushes updated data'''
         try:
             # Backup and set workbook, worksheet objs
             wb = openpyxl.load_workbook(inventory_file)
-            self.ws = wb[SUMMARY_SHEET_NAME]
+            self.ws = wb[SHEET_NAME]
             self.backup_wb(inventory_file)
             
             # Read contents to object
-            data_in_wb = self.read_ws_to_sku_dict()
-            updated_sku_codes_data = self.update_sku_data(data_in_wb, self.export_obj)
-            
+            mapped_data_in_wb_list = self.read_map_ws_data_to_list()
+            corrected_data = self._correct_wb_data_for_inner_quantities_in_codes(mapped_data_in_wb_list)
+            updated_sku_codes_data = self.update_sku_data(corrected_data, self.export_obj)    
+
             # Sort by quantity, transform and push updated values back to ws
             sorted_updated_data = sort_by_quantity(updated_sku_codes_data)
             self.write_updated_to_ws(sorted_updated_data)
@@ -118,7 +118,30 @@ class HelperFileUpdate():
             logging.critical(f'Errors inside HelperFileUpdate.updateworkbook Errr: {e}. Closing wb without saving')
             wb.close()
             raise Exception('Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling')
+
+    def _correct_wb_data_for_inner_quantities_in_codes(self, mapped_wb_data:list) -> dict:
+        '''correct workbook data for all inner quantities and custom codes.
         
+        Arg input format: [sku_dict_1, sku_dict_2, ...]
+        where sku_dict_n = {code1:{'quantity':2, 'item':'item_title1'}}
+        
+        Function returns:
+        {unique_inner_code1:{'quantity':2, 'item':'item_title1'}, unique_inner_code2:{'quantity':4, 'item':'item_title2'}, ...}'''
+        corrected_data = {}
+
+        for custom_label_dict in mapped_wb_data:
+            custom_label = list(custom_label_dict.keys())[0]
+            inner_quantity, inner_code = get_inner_quantity_and_custom_label(custom_label, QUANTITY_PATTERN)
+
+            # Corrected quantity=  quantity from wb 'quantity' column * extracted quantity inside custom label
+            corrected_quantity = custom_label_dict[custom_label]['quantity'] * inner_quantity
+            
+            if inner_code not in corrected_data.keys():
+                corrected_data[inner_code] = {'item':custom_label_dict[custom_label]['item'], 'quantity':corrected_quantity}
+            else:
+                corrected_data[inner_code]['quantity'] += corrected_quantity
+        return corrected_data
+
     @staticmethod
     def backup_wb(inventory_file:str):
         '''Creates a backup of workbook before new edits'''
@@ -127,11 +150,35 @@ class HelperFileUpdate():
         copy(inventory_file, backup_path)
         logging.info(f'Backup created at: {backup_path}, before touching {inventory_file}')
 
-    def read_ws_to_sku_dict(self):
+    def read_map_ws_data_to_list(self) -> list:
         ws_limits = get_last_used_row_col(self.ws)
         assert ws_limits['max_col'] == 3, 'Template of helper file changed! Maximum column used in ws != 3'
         current_sku_codes = self.get_ws_data(ws_limits)
-        return current_sku_codes
+        mapped_sku_custom_labels_list = self._map_sku_custom_label_codes(current_sku_codes)
+        return mapped_sku_custom_labels_list
+
+    def _map_sku_custom_label_codes(self, current_sku_codes:dict) -> list:
+        '''uses self.mapping_dict to change amazon sku's to known native custom_labels in inventory management
+        arg: {sku1:{'quantity':2, 'item':'item_title1'}, sku2:{'quantity':4, 'item':'item_title2'}, ...}
+        
+        returns: [{mapped_custom_label_1:{'quantity':2, 'item':'item_title1'}},
+                    {mapped_custom_label_1:{'quantity':4, 'item':'item_title1'}}
+                    {custom_label_2:{'quantity':1, 'item':'item_title2'}}, 
+                    ...]'''
+        # wb data sku's are unique, but after mapping, custom_labels (mapped sku) could have duplicates before merging their quantities,
+        # therefore list has to be used to house potential duplicate custom_labels
+        mapped_ws_data = []
+        for sku in current_sku_codes.keys():
+            mapped_entry_dict = {}
+            if sku in self.mapping_dict.keys():
+                logging.debug(f'Replacing wb sku {sku} with {self.mapping_dict[sku]}')
+                mapped_entry_dict[self.mapping_dict[sku]] = current_sku_codes[sku]
+                mapped_ws_data.append(mapped_entry_dict)
+            else:
+                mapped_entry_dict[sku] = current_sku_codes[sku]
+                mapped_ws_data.append(mapped_entry_dict)
+        logging.info(f'Mapped ws sku\'s with custom labels: sku count: {len(current_sku_codes.keys())} vs mapped list: {len(mapped_ws_data)} after mapping')
+        return mapped_ws_data
 
     def get_ws_data(self, ws_limits:dict) -> dict:
         '''iterates though data rows [2:ws.max_row] in self.ws and collects sku data to dict object:
@@ -149,7 +196,7 @@ class HelperFileUpdate():
         return current_sku_codes
 
     def get_ws_row_data(self, r:int):
-        '''returns sku, quantity, item from columns A,B,C in self.ws (SUMMARY_SHEET_NAME) on r (arg) row'''
+        '''returns sku, quantity, item from columns A,B,C in self.ws (SHEET_NAME) on r (arg) row'''
         sku = self.ws.cell(r, 1).value
         item = self.ws.cell(r, 3).value
         try:
@@ -160,7 +207,7 @@ class HelperFileUpdate():
         return sku, quantity, item
 
     def clean_ws_row_data(self, r:int, ws_limits:dict):
-        '''deletes row r contents in self.ws worksheet (SUMMARY_SHEET_NAME)'''
+        '''deletes row r contents in self.ws worksheet (SHEET_NAME)'''
         for col in range(1, ws_limits['max_col'] + 1):
             self.ws.cell(r, col).value = None
 
@@ -185,4 +232,14 @@ class HelperFileUpdate():
 
 
 if __name__ == "__main__":
+    # '''IMPLEMENT HIGHLIGHTING, RESET FORMATTING ON READ'''
+    # from parse_orders import EXPORT_FILE
+    # output_dir = get_output_dir()
+    # INVENTORY_WB_PATH = os.path.join(output_dir, EXPORT_FILE)
+    # # Hardcoding export obj
+    # EXPORT_OBJ = {}
+
+    # # Update workbook
+    # helperfile = HelperFileUpdate(export_obj=EXPORT_OBJ)
+    # helperfile.update_workbook(inventory_file=INVENTORY_WB_PATH)
     pass
