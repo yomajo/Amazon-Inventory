@@ -13,14 +13,15 @@ log_path = os.path.join(get_output_dir(client_file=False), 'amazon_inventory.log
 logging.basicConfig(handlers=[logging.FileHandler(log_path, 'a', 'utf-8')], level=logging.INFO)
 
 # GLOBAL VARIABLES
-TESTING = True
+TESTING = False
 EXPECTED_SYS_ARGS = 2
 
 if is_windows_machine():
-    TEST_AMZN_EXPORT_TXT = r'C:\Coding\Ebay\Working\Backups\Amazon exports\Collected exports\export 2021.01.08.txt'
+    TEST_AMZN_EXPORT_TXT = r'C:\Coding\Ebay\Working\Backups\Amazon exports\Collected exports\export 2020.06.16.txt'
 else:
     TEST_AMZN_EXPORT_TXT = r'/home/devyo/Coding/Git/Amazon Inventory/Amazon exports/run1.txt'
 
+# Avoiding circular reference on imports
 from sku_mapping import SKUMapping
 SKU_MAPPING_WB_PATH = os.path.join(get_output_dir(client_file=False), SKU_MAPPING_WB_NAME)
 SKU_MAPPING_DICT = SKUMapping(SKU_MAPPING_WB_PATH).read_sku_mapping_to_dict()
@@ -84,7 +85,7 @@ def main(testing, amazon_export_txt_path):
         logging.critical(f'Provided file {txt_path} does not exist.')
         print(VBA_ERROR_ALERT)
         sys.exit()
-    logging.info(f'\nRUN ENDED: {datetime.today().strftime("%Y.%m.%d %H:%M")}\n')
+    logging.info(f'\nRUN ENDED: {datetime.today().strftime("%Y.%m.%d %H:%M")}\n\n')
 
 
 if __name__ == "__main__":
