@@ -1,13 +1,12 @@
 from openpyxl.utils import get_column_letter
+from constants import VBA_ERROR_ALERT
 from datetime import datetime
 import platform
 import logging
 import json
 import sys
 import os
-
-# GLOBAL VARIABLES
-VBA_ERROR_ALERT = 'ERROR_CALL_DADDY'
+import re
 
 
 def get_level_up_abspath(absdir_path):
@@ -50,7 +49,7 @@ def orders_column_to_file(orders:list, dict_key:str):
     '''exports a column values of each orders list item for passed dict_key'''
     try:
         export_data = [order[dict_key] for order in orders]
-        with open(f'export {dict_key}.txt', 'w', encoding='utf-8', newline='\n') as f:
+        with open(f'export {dict_key}.txt', mode='w', encoding='utf-8') as f:
             f.writelines('\n'.join(export_data))
         print(f'Data exported to: {os.path.dirname(os.path.abspath(__file__))} folder')
     except KeyError:
@@ -60,6 +59,10 @@ def alert_vba_date_count(filter_date, orders_count):
     '''Passing two variables for VBA to display for user in message box'''
     print(f'FILTER_DATE_USED: {filter_date}')
     print(f'SKIPPING_ORDERS_COUNT: {orders_count}')
+
+def alert_VBA_duplicate_mapping_sku(sku_code:str):
+    '''duplicate SKU code found when reading mapping xlsx, alert VBA'''
+    print(f'DUPLICATE SKU IN MAPPING: {sku_code}')
 
 def get_datetime_obj(date_str):
     '''returns tz-naive datetime obj from date string. Designed to work with str format: 2020-04-16T10:07:16+00:00'''
@@ -124,6 +127,17 @@ def sort_by_quantity(labels:dict) -> list:
     [('sku1', {'item': 'SampleName1', 'quantity': 12}), ('sku2', {'item': 'SampleName2', 'quantity': 9}), ('sku3', {'item': 'SampleName3', 'quantity': 5})]'''
     return sorted(labels.items(), key=lambda sku_dict: sku_dict[1]['quantity'], reverse=True)
 
+def get_inner_quantity_and_custom_label(original_code:str, quantity_pattern:str):
+    '''returns recognized internal quantity from passed regex pattern: quantity_pattern inside original_code arg and simplified code:
+    example: from code: '(3 vnt.) CR2016 5BL 3V VINNIC LITHIUM' ->
+    return values are: 3, CR2016 5BL 3V VINNIC LITHIUM'''
+    try:
+        quantity_str = re.findall(quantity_pattern, original_code)[0]
+        inner_quantity = int(re.findall(r'\d+', quantity_str)[0])
+        inner_code = original_code.replace(quantity_str, '')
+        return inner_quantity, inner_code
+    except:
+        return 1, original_code
 
 if __name__ == "__main__":
     pass
