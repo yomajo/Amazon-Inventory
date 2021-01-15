@@ -128,7 +128,7 @@ class ParseOrders():
     def create_inventory_file(self, export_obj:dict):
         '''creates HelperFileCreate instance, and exports data in xlsx format'''
         try:
-            HelperFileCreate(export_obj).export(self.inventory_file)
+            HelperFileCreate(export_obj, self.mapping_dict).export(self.inventory_file)
             logging.info(f'Helper file {os.path.basename(self.inventory_file)} successfully created, opening...')
             os.startfile(self.inventory_file)
         except Exception as e:
@@ -150,7 +150,7 @@ class ParseOrders():
             print(f'Testing mode: {testing}. Change behaviour in export_orders method in ParseOrders class')
             print('ENABLED REPORT EXPORT WHILE TESTING')
             self.export_update_inventory_helper_file()
-            # self.push_orders_to_db()
+            self.push_orders_to_db()
             return
         self.export_update_inventory_helper_file()
         self.push_orders_to_db()
