@@ -1,5 +1,5 @@
 from constants import VBA_ERROR_ALERT, VBA_KEYERROR_ALERT, VBA_OK, SKU_MAPPING_WB_NAME
-from amzn_parser_utils import get_output_dir, is_windows_machine
+from amzn_parser_utils import get_output_dir, is_windows_machine, orders_column_to_file
 from parse_orders import ParseOrders
 from orders_db import OrdersDB
 from datetime import datetime
@@ -17,7 +17,7 @@ TESTING = False
 EXPECTED_SYS_ARGS = 2
 
 if is_windows_machine():
-    TEST_AMZN_EXPORT_TXT = r'C:\Coding\Ebay\Working\Backups\Amazon exports\Collected exports\export 2020.06.16.txt'
+    TEST_AMZN_EXPORT_TXT = r'C:\Coding\Ebay\Working\Backups\Amazon exports\Collected exports\export 2021.03.23.txt'
 else:
     TEST_AMZN_EXPORT_TXT = r'/home/devyo/Coding/Git/Amazon Inventory/Amazon exports/run1.txt'
 
@@ -54,6 +54,10 @@ def parse_export_orders(testing:bool, parse_orders:list, loaded_txt:str):
     '''interacts with classes (ParseOrders, OrdersDB) to filter new orders, export desired files and push new orders to db'''
     db_client = OrdersDB(parse_orders, loaded_txt)
     new_orders = db_client.get_new_orders_only()
+
+    # Export data column
+    orders_column_to_file(new_orders, 'sku')
+
     logging.info(f'After checking with database, further processing: {len(new_orders)} new orders')
     ParseOrders(new_orders, db_client, SKU_MAPPING_DICT).export_orders(testing)
 
