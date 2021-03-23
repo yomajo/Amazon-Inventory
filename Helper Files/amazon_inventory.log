@@ -1,13 +1,25 @@
-﻿NEW RUN STARTING: 2021.01.13 17:54
-INFO:root:Returning 1174/1174 new/loaded orders for further processing
-INFO:root:After checking with database, further processing: 1174 new orders
-INFO:root:Finished mapping and correcting q-ties for incoming orders. Returning total 1174 orders
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 380 distinct sku codes / data rows excl. headers
-INFO:root:Mapped ws sku's with custom labels: sku count: 380 vs mapped list: 380 after mapping
+INFO:root:Current sku mapping dict has 70 entries
+INFO:root:
+ NEW RUN STARTING: 2021.03.23 15:08
+INFO:root:Accepted sys args on launch: txt_path: C:\Coding\Ebay\Custom Label Sorting\bugs 2021.03\export 2021.03.23.txt
+INFO:root:Returning 752/1659 new/loaded orders for further processing
+INFO:root:After checking with database, further processing: 752 new orders
+INFO:root:Finished mapping and correcting q-ties for incoming orders. Returning total 752 orders
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 633 distinct sku codes / data rows excl. headers
+INFO:root:Mapped ws sku's with custom labels: sku count: 633 vs mapped list: 633 after mapping
 INFO:root:Writing updated values done. Saving, closing...
 INFO:root:Helper file Amazon Inventory Reduction.xlsx successfully updated, opening....
+INFO:root:New database backup amzn_inventory_b4lrun.db created on: 2021-03-23 15:08 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\amzn_inventory_b4lrun.db
+INFO:root:Created backup amzn_inventory_b4lrun.db before adding orders
+INFO:root:Current program_runs id: 21
+INFO:root:752 new orders were successfully added to database at run: 21
+INFO:root:Deleted old orders (cascade) from orders table where run_id = [16, 17]
+INFO:root:New database backup amzn_inventory_lrun.db created on: 2021-03-23 15:08 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\amzn_inventory_lrun.db
+INFO:root:Created backup amzn_inventory_lrun.db after adding orders
+INFO:root:Connection to DB in session with file export 2021.03.23.txt closed
+INFO:root:Total of 752 new orders have been added to database, after exports were completed
 INFO:root:
-RUN ENDED: 2021.01.13 17:54
+RUN ENDED: 2021.03.23 15:08
+
 
