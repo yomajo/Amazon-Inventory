@@ -139,5 +139,16 @@ def get_inner_quantity_and_custom_label(original_code:str, quantity_pattern:str)
     except:
         return 1, original_code
 
+def orders_column_to_file(orders:list, dict_key:str):
+    '''exports a column values of each orders list item for passed dict_key'''
+    try:
+        export_data = [order[dict_key] for order in orders]
+        with open(f'export {dict_key}.txt', 'w', encoding='utf-8') as f:
+            f.writelines('\n'.join(export_data))
+        print(f'Data exported to: {os.path.dirname(os.path.abspath(__file__))} folder')
+    except KeyError:
+        print(f'Provided {dict_key} does not exist in passed orders list of dicts')
+
+
 if __name__ == "__main__":
     pass
