@@ -150,7 +150,7 @@ class ParseOrders():
             print(f'Testing mode: {testing}. Change behaviour in export_orders method in ParseOrders class')
             print('ENABLED REPORT EXPORT WHILE TESTING')
             self.export_update_inventory_helper_file()
-            self.push_orders_to_db()
+            # self.push_orders_to_db()
             return
         self.export_update_inventory_helper_file()
         self.push_orders_to_db()
