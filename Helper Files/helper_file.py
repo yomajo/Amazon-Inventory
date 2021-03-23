@@ -258,7 +258,7 @@ class HelperFileUpdate():
         '''applies highlight if custom label about to be pushed to wb does not yet exist in mapping file'''
         highlight = True
         for _, mapped_custom_label in self.mapping_dict.items():
-            if custom_label in mapped_custom_label:
+            if str(custom_label) in mapped_custom_label:
                 highlight = False
                 break
         if highlight:
