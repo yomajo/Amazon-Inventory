@@ -1,6 +1,6 @@
-from constants import QUANTITY_PATTERN, EXPORT_FILE, SHEET_NAME, VBA_ERROR_ALERT, VBA_NO_NEW_JOB, VBA_KEYERROR_ALERT
-from amzn_parser_utils import get_output_dir, orders_column_to_file, get_inner_quantity_and_custom_label
-from helper_file import HelperFileCreate, HelperFileUpdate
+from .constants import QUANTITY_PATTERN, EXPORT_FILE, SHEET_NAME, VBA_ERROR_ALERT, VBA_NO_NEW_JOB, VBA_KEYERROR_ALERT
+from .amzn_parser_utils import get_output_dir, orders_column_to_file, get_inner_quantity_and_custom_label
+from .helper_file import HelperFileCreate, HelperFileUpdate
 from collections import defaultdict
 from datetime import datetime
 import logging

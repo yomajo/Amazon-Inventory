@@ -1,5 +1,5 @@
 from openpyxl.utils import get_column_letter
-from constants import VBA_ERROR_ALERT
+from .constants import VBA_ERROR_ALERT
 from datetime import datetime
 import platform
 import logging

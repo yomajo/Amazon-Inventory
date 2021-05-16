@@ -1,5 +1,5 @@
-from amzn_parser_utils import get_output_dir, get_last_used_row_col, col_to_letter, sort_by_quantity, get_inner_quantity_and_custom_label
-from constants import QUANTITY_PATTERN, VBA_ALREADY_OPEN_ERROR, SHEET_NAME, HEADERS
+from .amzn_parser_utils import get_output_dir, get_last_used_row_col, col_to_letter, sort_by_quantity, get_inner_quantity_and_custom_label
+from .constants import QUANTITY_PATTERN, VBA_ALREADY_OPEN_ERROR, SHEET_NAME, HEADERS
 from openpyxl.styles import Alignment
 from shutil import copy
 import logging

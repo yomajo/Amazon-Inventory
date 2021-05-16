@@ -1,4 +1,4 @@
-from amzn_parser_utils import get_output_dir, get_last_used_row_col, alert_VBA_duplicate_mapping_sku
+from .amzn_parser_utils import get_output_dir, get_last_used_row_col, alert_VBA_duplicate_mapping_sku
 import openpyxl
 import os
 import logging
