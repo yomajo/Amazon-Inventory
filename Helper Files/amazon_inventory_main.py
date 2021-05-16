@@ -54,10 +54,6 @@ def parse_export_orders(testing:bool, parse_orders:list, loaded_txt:str):
     '''interacts with classes (ParseOrders, OrdersDB) to filter new orders, export desired files and push new orders to db'''
     db_client = OrdersDB(parse_orders, loaded_txt)
     new_orders = db_client.get_new_orders_only()
-
-    # Export data column
-    orders_column_to_file(new_orders, 'sku')
-
     logging.info(f'After checking with database, further processing: {len(new_orders)} new orders')
     ParseOrders(new_orders, db_client, SKU_MAPPING_DICT).export_orders(testing)
 
