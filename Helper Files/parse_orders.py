@@ -1,11 +1,10 @@
-from .constants import QUANTITY_PATTERN, EXPORT_FILE, SHEET_NAME, VBA_ERROR_ALERT, VBA_NO_NEW_JOB, VBA_KEYERROR_ALERT
-from .amzn_parser_utils import get_output_dir, orders_column_to_file, get_inner_quantity_and_custom_label
-from .helper_file import HelperFileCreate, HelperFileUpdate
+from constants import EXPORT_FILE, VBA_ERROR_ALERT, VBA_NO_NEW_JOB, VBA_KEYERROR_ALERT
+from amzn_parser_utils import get_output_dir, orders_column_to_file, get_inner_quantity_and_custom_label, contains_inner_qty
+from helper_file import HelperFileCreate, HelperFileUpdate
 from collections import defaultdict
 from datetime import datetime
 import logging
 import sys
-import csv
 import os
 
 
@@ -18,6 +17,7 @@ class ParseOrders():
     export_orders(testing=False)    NOTE: check behaviour when testing flag is True in export_orders'''
     
     def __init__(self, all_orders:list, db_client:object, mapping_dict:dict):
+        self.parsed_qties_codes = set()
         self.all_orders = self.__get_mapped_cleaned_orders(all_orders, mapping_dict)
         self.db_client = db_client
         self.mapping_dict = mapping_dict
@@ -29,13 +29,15 @@ class ParseOrders():
             quantity_purchased = self.__get_order_quantity(order)
             sku = order['sku']
             # change sku if in mapping keys
-            if sku in mapping_dict.keys():
-                inner_quantity, inner_code = get_inner_quantity_and_custom_label(mapping_dict[sku], QUANTITY_PATTERN)                
-                logging.debug(f'Entered mapping. Old sku: {sku} New sku: {inner_code}. Original q-ty: {quantity_purchased}, Recog. q-ty: {inner_quantity}')
+            working_code = mapping_dict[sku] if sku in mapping_dict.keys() else sku
+            
+            if contains_inner_qty(working_code):
+                inner_quantity, inner_code = get_inner_quantity_and_custom_label(working_code)
+                logging.debug(f'Entered mapping. Amazon sku: {sku} New sku: {inner_code}. Original q-ty: {quantity_purchased}, Recog. q-ty: {inner_quantity}')
+                self.parsed_qties_codes.add(inner_code)
             else:
-                # No mapping sku-custom_label pair, but attempt to correct quantities for quantity hidden in sku/custom_label
-                inner_quantity, inner_code = get_inner_quantity_and_custom_label(sku, QUANTITY_PATTERN)
-                logging.debug(f'No mapping. Inner code: {inner_code}, Recog. q-ty: {inner_quantity}')
+                inner_quantity, inner_code = 1, working_code
+                logging.debug(f'No mapping. Inner code: {inner_code}, Recog. q-ty: {inner_quantity} (hardcoded 1)')
 
             # Corrected quantity = 'quantity-purchased' in order dict (source txt column) * extracted quantity inside custom label
             corrected_quantity = quantity_purchased * inner_quantity
@@ -116,7 +118,7 @@ class ParseOrders():
     def update_inventory_file(self, export_obj:dict):
         '''creates HelperFileUpdate instance, and updates data in self.inventory_file xlsx file'''
         try:
-            HelperFileUpdate(export_obj, self.mapping_dict).update_workbook(self.inventory_file)
+            HelperFileUpdate(export_obj, self.mapping_dict, self.parsed_qties_codes).update_workbook(self.inventory_file)
             logging.info(f'Helper file {os.path.basename(self.inventory_file)} successfully updated, opening....')
             os.startfile(self.inventory_file)
         except Exception as e:
@@ -128,7 +130,7 @@ class ParseOrders():
     def create_inventory_file(self, export_obj:dict):
         '''creates HelperFileCreate instance, and exports data in xlsx format'''
         try:
-            HelperFileCreate(export_obj, self.mapping_dict).export(self.inventory_file)
+            HelperFileCreate(export_obj, self.mapping_dict, self.parsed_qties_codes).export(self.inventory_file)
             logging.info(f'Helper file {os.path.basename(self.inventory_file)} successfully created, opening...')
             os.startfile(self.inventory_file)
         except Exception as e:
