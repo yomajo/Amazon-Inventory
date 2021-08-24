@@ -1,5 +1,5 @@
-from .amzn_parser_utils import get_output_dir, get_last_used_row_col, col_to_letter, sort_by_quantity, get_inner_quantity_and_custom_label
-from .constants import QUANTITY_PATTERN, VBA_ALREADY_OPEN_ERROR, SHEET_NAME, HEADERS
+from amzn_parser_utils import get_output_dir, get_last_used_row_col, col_to_letter, sort_by_quantity, get_inner_quantity_and_custom_label
+from constants import VBA_ALREADY_OPEN_ERROR, SHEET_NAME, HEADERS
 from openpyxl.styles import Alignment
 from shutil import copy
 import logging
@@ -20,9 +20,10 @@ class HelperFileCreate():
     Main method: export() - takes argument of target workbook name (path) and pushes
     export_obj accepted by class to single sheet, highlights unmapped codes'''
     
-    def __init__(self, export_obj:dict, mapping_dict:dict):
+    def __init__(self, export_obj:dict, mapping_dict:dict, parsed_qties_codes:set):
         self.sorted_export_obj = sort_by_quantity(export_obj)
         self.mapping_dict = mapping_dict
+        self.parsed_qties_codes = parsed_qties_codes
         self.col_widths = {}
 
     def export(self, wb_name:str):
@@ -68,7 +69,7 @@ class HelperFileCreate():
         '''applies highlight if custom label about to be pushed to wb does not yet exist in mapping file'''
         highlight = True
         for _, mapped_custom_label in self.mapping_dict.items():
-            if custom_label in mapped_custom_label:
+            if str(custom_label) in mapped_custom_label or str(custom_label) in self.parsed_qties_codes:
                 highlight = False
                 break
         if highlight:
@@ -105,10 +106,11 @@ class HelperFileUpdate():
     corrects quantities, from SHEET_NAME, cleans sheet,
     merges current contents with incoming data in export_obj and pushes updated values'''
     
-    def __init__(self, export_obj:dict, mapping_dict:dict):
+    def __init__(self, export_obj:dict, mapping_dict:dict, parsed_qties_codes:set):
         '''Different from self.export_obj in HelperFileCreate. Stil dict of dicts at this point'''
         self.export_obj = export_obj
         self.mapping_dict = mapping_dict
+        self.parsed_qties_codes = parsed_qties_codes
 
     def update_workbook(self, inventory_file):
         '''main cls method. Handles reading, cleaning, formatting, merging of current and incoming data, pushes updated data'''
@@ -151,7 +153,7 @@ class HelperFileUpdate():
 
         for custom_label_dict in mapped_wb_data:
             custom_label = list(custom_label_dict.keys())[0]
-            inner_quantity, inner_code = get_inner_quantity_and_custom_label(custom_label, QUANTITY_PATTERN)
+            inner_quantity, inner_code = get_inner_quantity_and_custom_label(custom_label)
 
             # Corrected quantity=  quantity from wb 'quantity' column * extracted quantity inside custom label
             corrected_quantity = custom_label_dict[custom_label]['quantity'] * inner_quantity
@@ -258,7 +260,7 @@ class HelperFileUpdate():
         '''applies highlight if custom label about to be pushed to wb does not yet exist in mapping file'''
         highlight = True
         for _, mapped_custom_label in self.mapping_dict.items():
-            if str(custom_label) in mapped_custom_label:
+            if str(custom_label) in mapped_custom_label or str(custom_label) in self.parsed_qties_codes:
                 highlight = False
                 break
         if highlight:
