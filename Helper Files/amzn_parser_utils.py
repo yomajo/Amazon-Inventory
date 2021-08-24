@@ -1,5 +1,5 @@
 from openpyxl.utils import get_column_letter
-from .constants import VBA_ERROR_ALERT
+from constants import VBA_ERROR_ALERT, QUANTITY_PATTERN
 from datetime import datetime
 import platform
 import logging
@@ -127,12 +127,20 @@ def sort_by_quantity(labels:dict) -> list:
     [('sku1', {'item': 'SampleName1', 'quantity': 12}), ('sku2', {'item': 'SampleName2', 'quantity': 9}), ('sku3', {'item': 'SampleName3', 'quantity': 5})]'''
     return sorted(labels.items(), key=lambda sku_dict: sku_dict[1]['quantity'], reverse=True)
 
-def get_inner_quantity_and_custom_label(original_code:str, quantity_pattern:str):
+def contains_inner_qty(sku_code:str) -> bool:
+    '''returns True if (x vnt.) type quantity inside arg string code is found
+    returns True for code: (4 vnt.) ELL06
+    returns False for code: GOL78'''
+    if re.findall(QUANTITY_PATTERN, sku_code):
+        return True
+    return False
+
+def get_inner_quantity_and_custom_label(original_code:str):
     '''returns recognized internal quantity from passed regex pattern: quantity_pattern inside original_code arg and simplified code:
     example: from code: '(3 vnt.) CR2016 5BL 3V VINNIC LITHIUM' ->
     return values are: 3, CR2016 5BL 3V VINNIC LITHIUM'''
     try:
-        quantity_str = re.findall(quantity_pattern, original_code)[0]
+        quantity_str = re.findall(QUANTITY_PATTERN, original_code)[0]
         inner_quantity = int(re.findall(r'\d+', quantity_str)[0])
         inner_code = original_code.replace(quantity_str, '')
         return inner_quantity, inner_code
