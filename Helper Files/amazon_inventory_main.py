@@ -1,7 +1,7 @@
-from .constants import VBA_ERROR_ALERT, VBA_KEYERROR_ALERT, VBA_OK, SKU_MAPPING_WB_NAME
-from .amzn_parser_utils import get_output_dir, is_windows_machine, orders_column_to_file
-from .parse_orders import ParseOrders
-from .orders_db import OrdersDB
+from constants import VBA_ERROR_ALERT, VBA_KEYERROR_ALERT, VBA_OK, SKU_MAPPING_WB_NAME
+from amzn_parser_utils import get_output_dir, is_windows_machine, orders_column_to_file
+from parse_orders import ParseOrders
+from orders_db import OrdersDB
 from datetime import datetime
 import logging
 import sys
@@ -9,7 +9,7 @@ import csv
 import os
 
 # Logging config:
-log_path = os.path.join(get_output_dir(client_file=False), 'amazon_inventory.log')
+log_path = os.path.join(get_output_dir(client_file=False), 'inventory.log')
 logging.basicConfig(handlers=[logging.FileHandler(log_path, 'a', 'utf-8')], level=logging.INFO)
 
 # GLOBAL VARIABLES
@@ -17,12 +17,12 @@ TESTING = False
 EXPECTED_SYS_ARGS = 2
 
 if is_windows_machine():
-    TEST_AMZN_EXPORT_TXT = r'C:\Coding\Ebay\Working\Backups\Amazon exports\Collected exports\export 2021.03.23.txt'
+    TEST_AMZN_EXPORT_TXT = r'C:\Coding\Ebay\Working\Backups\Amazon exports\Collected exports\Amazon EU 2021-08-19.txt'
 else:
     TEST_AMZN_EXPORT_TXT = r'/home/devyo/Coding/Git/Amazon Inventory/Amazon exports/run1.txt'
 
 # Avoiding circular reference on imports
-from .sku_mapping import SKUMapping
+from sku_mapping import SKUMapping
 SKU_MAPPING_WB_PATH = os.path.join(get_output_dir(client_file=False), SKU_MAPPING_WB_NAME)
 SKU_MAPPING_DICT = SKUMapping(SKU_MAPPING_WB_PATH).read_sku_mapping_to_dict()
 
