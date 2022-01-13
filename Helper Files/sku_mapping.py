@@ -1,6 +1,5 @@
-from amzn_parser_utils import get_output_dir, get_last_used_row_col, alert_VBA_duplicate_mapping_sku
+from amzn_parser_utils import get_last_used_row_col, alert_VBA_duplicate_mapping_sku
 import openpyxl
-import os
 import logging
 
 
@@ -28,14 +27,12 @@ class SKUMapping():
                 return sku_mapping
             except Exception as e:
                 logging.critical(f'Errors while getting mapping dict inside read_sku_mapping_to_dict . Err: {e}. Closing mapping wb; returning empty mapping dict')
-                return {}
                 wb.close()
+                return {}
         
     def check_ws_integrity(self):
         '''ensures mapping workbook was not structuraly tampered with:
-        3 columns, ws name, minimum 50 used rows, header titles'''
-        assert self.ws.title == 'Mapping', 'Mapping workbook active worksheet name is NOT \'Mapping\'.'
-        
+        3 columns, ws name, minimum 50 used rows, header titles'''        
         ws_limits = get_last_used_row_col(self.ws)
         last_col = ws_limits['max_col']
         self.last_row = ws_limits['max_row']

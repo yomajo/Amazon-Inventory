@@ -6,9 +6,7 @@ __pycache__
 build
 dist
 amazon_inventory_main.spec
-amzn_inventory.db
-amzn_inventory_b4lrun.db
-amzn_inventory_lrun.db
+*.db
 project_diffs.txt
 Copies of all CSVs.lnk
 CSV Files.lnk
@@ -17,3 +15,6 @@ Backups
 Custom Labels Sorter.xlsm
 Amazon SKU Mapping.xlsx
 csvs
+TODO.txt
+*.json
+*.xlsx
