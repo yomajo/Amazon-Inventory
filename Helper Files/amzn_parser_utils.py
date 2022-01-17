@@ -1,8 +1,9 @@
+from constants import VBA_ERROR_ALERT, COUNTRY_CODES, VBA_KEYERROR_ALERT, EXPORT_FILE
 from openpyxl.utils import get_column_letter
-from constants import VBA_ERROR_ALERT
 from datetime import datetime
 import platform
 import logging
+import shutil
 import json
 import sys
 import os
@@ -44,16 +45,6 @@ def is_windows_machine() -> bool:
     '''returns True if machine executing the code is Windows based'''
     machine_os = platform.system()
     return True if machine_os == 'Windows' else False
-
-def orders_column_to_file(orders:list, dict_key:str):
-    '''exports a column values of each orders list item for passed dict_key'''
-    try:
-        export_data = [order[dict_key] for order in orders]
-        with open(f'export {dict_key}.txt', mode='w', encoding='utf-8') as f:
-            f.writelines('\n'.join(export_data))
-        print(f'Data exported to: {os.path.dirname(os.path.abspath(__file__))} folder')
-    except KeyError:
-        print(f'Provided {dict_key} does not exist in passed orders list of dicts')
 
 def alert_vba_date_count(filter_date, orders_count):
     '''Passing two variables for VBA to display for user in message box'''
@@ -115,22 +106,95 @@ def get_last_used_row_col(ws:object):
             break
     return {'max_row' : row, 'max_col' : column}
 
-def export_json_data(dataobj : dict, json_path : str ='export.json'):
-    '''exports dataobj in json format'''
-    with open(json_path, 'w') as f:
-        json.dump(dataobj, f, indent=4)
+def dump_to_json(export_obj, json_fname:str) -> str:
+    '''exports export_obj to json file. Returns path to crated json'''
+    output_dir = get_output_dir(client_file=False)
+    json_path = os.path.join(output_dir, json_fname)
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump(export_obj, f, indent=4)
+    return json_path
 
-def sort_by_quantity(labels:dict) -> list:
-    '''sorts {'sku1': {'item': 'item_name1', 'quantity: 2}, 'sku3': {'item': 'item_name2', 'quantity: 5}, ...} type obj
+def sort_by_quantity(sku_qties:dict) -> list:
+    '''sorts {'sku1': qty1, 'sku2': qty2, ...} dict
     by descending quantities. Returns list of tuples:
     
-    [('sku1', {'item': 'SampleName1', 'quantity': 12}), ('sku2', {'item': 'SampleName2', 'quantity': 9}), ('sku3', {'item': 'SampleName3', 'quantity': 5})]'''
-    return sorted(labels.items(), key=lambda sku_dict: sku_dict[1]['quantity'], reverse=True)
+    [('sku1', qty_max), ('sku2', qty), ..., ('sku2', qty_min)]'''
+    return sorted(sku_qties.items(), key=lambda x: x[1], reverse=True)
 
-def get_inner_quantity_and_custom_label(original_code:str, quantity_pattern:str):
-    '''returns recognized internal quantity from passed regex pattern: quantity_pattern inside original_code arg and simplified code:
-    example: from code: '(3 vnt.) CR2016 5BL 3V VINNIC LITHIUM' ->
-    return values are: 3, CR2016 5BL 3V VINNIC LITHIUM'''
+def get_country_code(country:str) -> str:
+    '''using COUNTRY_CODES dict, returns 2 letter str for country if len(country) > 2. Called from main'''
+    try:
+        if len(country) > 2:
+            country_code = COUNTRY_CODES[country.upper()]
+            return country_code
+        else:
+            return country
+    except KeyError as e:
+        logging.critical(f'Failed to get country code for: {country}. Err:{e}. Alerting VBA, terminating immediately')
+        print(VBA_ERROR_ALERT)
+        sys.exit()
+
+def split_sku(split_sku:str, sales_channel:str) -> list:
+    '''splits sku string on ',' and ' + ' into list of skus for Etsy.
+    example input: '1 vnt. 1040830 + 1 vnt. 1034630,1 vnt. T1147'
+    return value: ['1 vnt. 1040830', '1 vnt. 1034630', '1 vnt. T1147']
+    
+    for Amazon, only splits multilistings on plus ' + ' string'''
+    if sales_channel == 'Etsy':
+        plus_comma_split = [sku_sublist.split(',') for sku_sublist in split_sku.split(' + ')]
+        return [sku for sku_sublist in plus_comma_split for sku in sku_sublist]
+    else:
+        return split_sku.split(' + ')
+
+def create_src_file_backup(target_file_abs_path:str, backup_fname_prefix:str) -> str:
+    '''returns abspath of created file backup'''
+    src_files_folder = get_src_files_folder()
+    _, backup_ext = os.path.splitext(target_file_abs_path)
+    backup_abspath = get_backup_f_abspath(src_files_folder, backup_fname_prefix, backup_ext)
+    shutil.copy(src=target_file_abs_path, dst=backup_abspath)
+    logging.info(f'Backup created at: {backup_abspath}')
+    return backup_abspath
+
+def get_src_files_folder():
+    output_dir = get_output_dir(client_file=False)
+    target_dir = os.path.join(output_dir, 'src files')
+    if not os.path.exists(target_dir):
+        os.mkdir(target_dir)
+        logging.debug(f'src files directory inside Helper files has been recreated: {target_dir}')
+    return target_dir
+
+def get_backup_f_abspath(src_files_folder:str, backup_fname_prefix:str, ext:str) -> str:
+    '''returns abs path for backup file. fname format: backup_fname_prefix-YY-MM-DD-HH-MM.ext'''
+    timestamp = datetime.now().strftime('%y-%m-%d %H-%M')
+    backup_fname = f'{backup_fname_prefix} {timestamp}{ext}'
+    return os.path.join(src_files_folder, backup_fname)
+
+def delete_file(file_abspath:str):
+    '''deletes file located in file_abspath'''
+    try:
+        os.remove(file_abspath)
+    except FileNotFoundError:
+        logging.warning(f'Tried deleting file: {file_abspath}, but apparently human has taken care of it first. (File not found)')
+    except Exception as e:
+        logging.warning(f'Unexpected err: {e} while flushing db old records, deleting file: {file_abspath}')
+
+def get_order_quantity(order:dict, proxy_keys:dict) -> int:
+    '''returns 'quantity-purchased' order key value as integer'''
+    try:
+        return int(order[proxy_keys['quantity-purchased']])
+    except KeyError:
+        logging.critical(f'Failed to retrieve order quantity for order: {order}. Proxy keys: {proxy_keys}. Returning 1')
+        print(VBA_KEYERROR_ALERT)
+        return 1
+    except ValueError:
+        logging.critical(f'Failed to convert order quantity for order: {order}. Proxy keys: {proxy_keys}. Returning 1')
+        print(VBA_ERROR_ALERT)
+        return 1
+
+def get_inner_qty_sku(original_code:str, quantity_pattern:str):
+    '''returns recognized internal quantity from passed regex pattern: quantity_pattern inside original_code arg and simplified code
+    two examples: from codes: '(3 vnt.) CR2016 5BL 3V VINNIC LITHIUM' / '1 vnt. 1034630' ->
+    return values are: 3, 'CR2016 5BL 3V VINNIC LITHIUM' / 1, '1034630' '''
     try:
         quantity_str = re.findall(quantity_pattern, original_code)[0]
         inner_quantity = int(re.findall(r'\d+', quantity_str)[0])
@@ -138,6 +202,31 @@ def get_inner_quantity_and_custom_label(original_code:str, quantity_pattern:str)
         return inner_quantity, inner_code
     except:
         return 1, original_code
+
+def export_invalid_order_ids(invalid_orders:list, proxy_keys:dict, invalid_orders_fpath:str):
+    '''exports etsy / amazon order IDs to txt file'''
+    with open(invalid_orders_fpath, 'w') as f:
+        f.write(f'Order ID(s), that were not included in {EXPORT_FILE}:\n\n')
+        for order in invalid_orders:
+            f.write(f'{order[proxy_keys["order-id"]]}\n\n')
+
+def update_col_widths(col_widths:dict, col:int, cell_value:str, zero_indexed=True):
+    '''runs on each cell. Forms a dictionary {'A':30, 'B':15...} for max column widths in worksheet (width as length of max cell)'''
+    col_letter = col_to_letter(col, zero_indexed=zero_indexed)
+    if col_letter in col_widths:
+        # check for length, update if current cell length exceeds current entry for column
+        if len(cell_value) > col_widths[col_letter]:
+            col_widths[col_letter] = len(cell_value)
+    else:
+        col_widths[col_letter] = len(cell_value)
+    return col_widths
+
+def adjust_col_widths(ws:object, col_widths:dict):
+    '''iterates over {'A':30, 'B':40, 'C':35...} dict to resize worksheets' column widths'''
+    for col_letter in col_widths:
+        adjusted_width = col_widths[col_letter] + 4
+        ws.column_dimensions[col_letter].width = adjusted_width
+
 
 if __name__ == "__main__":
     pass
