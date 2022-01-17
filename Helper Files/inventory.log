@@ -1,306 +1,135 @@
 INFO:root:
- NEW RUN STARTING: 2022.01.13 15:05
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:Database has been created at c:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory.db
-DEBUG:root:Backup for inventory_b4lrun.db suspended due to testing: True
-DEBUG:root:Before inserting new orders, orders table contains 0 entries associated with Amazon channel
+ NEW RUN STARTING: 2022.01.14 12:58
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon exports\COM 2021.12.07.txt; sales_channel: Amazon. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon exports\\COM 2021.12.07.txt', 'Amazon']
+INFO:root:Database has been created at C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory.db
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-01-14 12:58 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
 INFO:root:Returning 49/49 new/loaded orders for further processing
 INFO:root:Loaded file contains: 49. Further processing: 49 orders
 INFO:root:After checking with database, further processing: 49 new orders
-DEBUG:root:Old json files deleted. Ready for debugging
 INFO:root:Current sku mapping dict has 1354 entries
-DEBUG:root:Mapping match found for code: (10 vnt.) 364 MURATA SR621SW SONY, match: (10 vnt.) 364 MURATA SR621SW SONY
-DEBUG:root:Mapping match found for code: (1 vnt.) 104111324, match: (1 vnt.) 104111324
-DEBUG:root:Mapping match found for code: (5 vnt.) 395 MURATA SR927SW 399 SONY, match: (5 vnt.) 395 MURATA SR927SW 399 SONY
-DEBUG:root:Mapping match found for code: YU-3OC4-D2BD, match: (1 vnt.) F21817
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: (10 vnt.) LR721 10BL CAMELION AG11 ALK., match: (10 vnt.) LR721 10BL CAMELION AG11 ALK. 362/162
-DEBUG:root:Mapping match found for code: (1 vnt.) T1138, match: (1 vnt.) T1138
-DEBUG:root:Mapping match found for code: EX01, match: (1 vnt.) EX01
-DEBUG:root:Mapping match found for code: (10 vnt.) LR1131 10BL L1131F VINNIC AG10, match: (10 vnt.) LR1131 10BL L1131F VINNIC AG10 ALKALINE
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: (1 vnt.) 106701520, match: (1 vnt.) 106701520
-DEBUG:root:Mapping match found for code: YU-3OC4-D2BD, match: (1 vnt.) F21817
-DEBUG:root:Mapping match found for code: CC-8W4F-GSUG, match: (1 vnt.) 1040725
-DEBUG:root:Mapping match found for code: (2 vnt.) CPG-18, match: (2 vnt.) CPG-18
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020848, match: (1 vnt.) 10020848
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: CC-8W4F-GSUG, match: (1 vnt.) 1040725
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020848, match: (1 vnt.) 10020848
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020845, match: (1 vnt.) 10020845
-DEBUG:root:Mapping match found for code: CR80, match: (1 vnt.) CR80
-DEBUG:root:Mapping match found for code: YU-3OC4-D2BD, match: (1 vnt.) F21817
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: CW-93Y4-R5T4, match: (1 vnt.) 9780738723396
-DEBUG:root:Mapping match found for code: (1 vnt.) BT40, match: (1 vnt.) LX21
-DEBUG:root:Mapping match found for code: EX150(UK), match: (1 vnt.) EX150
-DEBUG:root:Mapping match found for code: CC-8W4F-GSUG, match: (1 vnt.) 1040725
-DEBUG:root:Mapping match found for code: (1 vnt.) 1044948, match: (1 vnt.) 1044948
-DEBUG:root:Mapping match found for code: DW-N1Z9-D8DA, match: (1 vnt.) EX253
-DEBUG:root:Mapping match found for code: (1 vnt.) 1044948, match: (1 vnt.) 1044948
-DEBUG:root:Mapping match found for code: VX-7QVT-2VE5, match: (1 vnt.) 1034802
-DEBUG:root:Mapping match found for code: (5 vnt.) 371 BAT. MAXELL (SR920SW, 370), match: (5 vnt.) 371 BAT. MAXELL (SR920SW, 370) Silver
-DEBUG:root:Mapping match found for code: (1 vnt.) 1044948, match: (1 vnt.) 1044948
-DEBUG:root:Mapping match found for code: (50 vnt.) LR621 L621F 10BL, match: (50 vnt.) LR621 L621F 10BL VINNIC AG1 ALKALINE
-DEBUG:root:Mapping match found for code: (1 vnt.) 104111324, match: (1 vnt.) 104111324
-DEBUG:root:Mapping match found for code: SWT80, match: (1 vnt.) SWT80
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020848, match: (1 vnt.) 10020848
 INFO:root:Orders inside valid: 49; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-DEBUG:root:c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx found. Updating...
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 304 distinct sku codes / data rows excl. headers
-DEBUG:root:Adding a new sku code: 364 MURATA SR621SW SONY. Q-ty: 10
-DEBUG:root:Updating quantity for code: 104111324. Previous quantity: 5, adding: 3
-DEBUG:root:Adding a new sku code: CR2450 5BL CAMELION LITHIUM 3V. Q-ty: 5
-DEBUG:root:Adding a new sku code: 395 MURATA SR927SW 399 SONY. Q-ty: 5
-DEBUG:root:Updating quantity for code: F21817. Previous quantity: 4, adding: 3
-DEBUG:root:Updating quantity for code: 27A 5BL L828F VINNIC 12V ALKALINE. Previous quantity: 10, adding: 25
-DEBUG:root:Adding a new sku code: LR721 10BL CAMELION AG11 ALK. 362/162. Q-ty: 10
-DEBUG:root:Adding a new sku code: T1138. Q-ty: 1
-DEBUG:root:Updating quantity for code: 1024349. Previous quantity: 1, adding: 2
-DEBUG:root:Adding a new sku code: EX01. Q-ty: 1
-DEBUG:root:Updating quantity for code: LR1131 10BL L1131F VINNIC AG10 ALKALINE. Previous quantity: 80, adding: 10
-DEBUG:root:Adding a new sku code: 1040721. Q-ty: 1
-DEBUG:root:Updating quantity for code: 106701520. Previous quantity: 10, adding: 1
-DEBUG:root:Updating quantity for code: 124070244. Previous quantity: 2, adding: 4
-DEBUG:root:Updating quantity for code: 1040725. Previous quantity: 6, adding: 3
-DEBUG:root:Adding a new sku code: CPG-18. Q-ty: 2
-DEBUG:root:Updating quantity for code: ELL48. Previous quantity: 2, adding: 1
-DEBUG:root:Updating quantity for code: 10020848. Previous quantity: 30, adding: 3
-DEBUG:root:Updating quantity for code: 10020845. Previous quantity: 5, adding: 1
-DEBUG:root:Adding a new sku code: CR80. Q-ty: 1
-DEBUG:root:Adding a new sku code: FN78. Q-ty: 2
-DEBUG:root:Adding a new sku code: 9780738723396. Q-ty: 1
-DEBUG:root:Adding a new sku code: LX21. Q-ty: 1
-DEBUG:root:Updating quantity for code: EX150. Previous quantity: 1, adding: 1
-DEBUG:root:Adding a new sku code: 1044948. Q-ty: 3
-DEBUG:root:Adding a new sku code: EX253. Q-ty: 1
-DEBUG:root:Updating quantity for code: 1034802. Previous quantity: 1, adding: 1
-DEBUG:root:Updating quantity for code: 106710976. Previous quantity: 12, adding: 1
-DEBUG:root:Updating quantity for code: 371 BAT. MAXELL (SR920SW, 370) Silver. Previous quantity: 12, adding: 5
-DEBUG:root:Adding a new sku code: LR621 L621F 10BL VINNIC AG1 ALKALINE. Q-ty: 50
-DEBUG:root:Updating quantity for code: AOP006. Previous quantity: 1, adding: 1
-DEBUG:root:Adding a new sku code: SWT80. Q-ty: 1
-INFO:root:Writing updated values done. Saving, closing...
-CRITICAL:root:Workbook c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx already open. Err: [Errno 13] Permission denied: 'c:\\Coding\\Ebay\\Custom Label Sorting\\Amazon Inventory Reduction.xlsx'
-ERROR:root:Unexpected error UPDATING helper file. Closing database connection, alerting VBA, exiting... Last error: Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling
-Traceback (most recent call last):
-  File "c:\Coding\Ebay\Custom Label Sorting\Helper Files\helper_file.py", line 100, in update_workbook
-    wb.save(inventory_file)
-  File "C:\Coding\Ebay\Custom Label Sorting\env\lib\site-packages\openpyxl\workbook\workbook.py", line 392, in save
-    save_workbook(self, filename)
-  File "C:\Coding\Ebay\Custom Label Sorting\env\lib\site-packages\openpyxl\writer\excel.py", line 291, in save_workbook
-    archive = ZipFile(filename, 'w', ZIP_DEFLATED, allowZip64=True)
-  File "c:\users\yo\appdata\local\programs\python\python37-32\lib\zipfile.py", line 1204, in __init__
-    self.fp = io.open(file, filemode)
-PermissionError: [Errno 13] Permission denied: 'c:\\Coding\\Ebay\\Custom Label Sorting\\Amazon Inventory Reduction.xlsx'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "c:\Coding\Ebay\Custom Label Sorting\Helper Files\parse_orders.py", line 193, in update_inventory_file
-    HelperFileUpdate(export_obj).update_workbook(self.inventory_file)
-  File "c:\Coding\Ebay\Custom Label Sorting\Helper Files\helper_file.py", line 105, in update_workbook
-    raise Exception('Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling')
-Exception: Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling
-INFO:root:
- NEW RUN STARTING: 2022.01.13 15:12
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-DEBUG:root:Backup for inventory_b4lrun.db suspended due to testing: True
-DEBUG:root:Before inserting new orders, orders table contains 0 entries associated with Amazon channel
-INFO:root:Returning 49/49 new/loaded orders for further processing
-INFO:root:Loaded file contains: 49. Further processing: 49 orders
-INFO:root:After checking with database, further processing: 49 new orders
-DEBUG:root:Old json files deleted. Ready for debugging
-INFO:root:Current sku mapping dict has 1354 entries
-DEBUG:root:Mapping match found for code: (10 vnt.) 364 MURATA SR621SW SONY, match: (10 vnt.) 364 MURATA SR621SW SONY
-DEBUG:root:Mapping match found for code: (1 vnt.) 104111324, match: (1 vnt.) 104111324
-DEBUG:root:Mapping match found for code: (5 vnt.) 395 MURATA SR927SW 399 SONY, match: (5 vnt.) 395 MURATA SR927SW 399 SONY
-DEBUG:root:Mapping match found for code: YU-3OC4-D2BD, match: (1 vnt.) F21817
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: (10 vnt.) LR721 10BL CAMELION AG11 ALK., match: (10 vnt.) LR721 10BL CAMELION AG11 ALK. 362/162
-DEBUG:root:Mapping match found for code: (1 vnt.) T1138, match: (1 vnt.) T1138
-DEBUG:root:Mapping match found for code: EX01, match: (1 vnt.) EX01
-DEBUG:root:Mapping match found for code: (10 vnt.) LR1131 10BL L1131F VINNIC AG10, match: (10 vnt.) LR1131 10BL L1131F VINNIC AG10 ALKALINE
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: (1 vnt.) 106701520, match: (1 vnt.) 106701520
-DEBUG:root:Mapping match found for code: YU-3OC4-D2BD, match: (1 vnt.) F21817
-DEBUG:root:Mapping match found for code: CC-8W4F-GSUG, match: (1 vnt.) 1040725
-DEBUG:root:Mapping match found for code: (2 vnt.) CPG-18, match: (2 vnt.) CPG-18
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020848, match: (1 vnt.) 10020848
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: CC-8W4F-GSUG, match: (1 vnt.) 1040725
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020848, match: (1 vnt.) 10020848
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020845, match: (1 vnt.) 10020845
-DEBUG:root:Mapping match found for code: CR80, match: (1 vnt.) CR80
-DEBUG:root:Mapping match found for code: YU-3OC4-D2BD, match: (1 vnt.) F21817
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: CW-93Y4-R5T4, match: (1 vnt.) 9780738723396
-DEBUG:root:Mapping match found for code: (1 vnt.) BT40, match: (1 vnt.) LX21
-DEBUG:root:Mapping match found for code: EX150(UK), match: (1 vnt.) EX150
-DEBUG:root:Mapping match found for code: CC-8W4F-GSUG, match: (1 vnt.) 1040725
-DEBUG:root:Mapping match found for code: (1 vnt.) 1044948, match: (1 vnt.) 1044948
-DEBUG:root:Mapping match found for code: DW-N1Z9-D8DA, match: (1 vnt.) EX253
-DEBUG:root:Mapping match found for code: (1 vnt.) 1044948, match: (1 vnt.) 1044948
-DEBUG:root:Mapping match found for code: VX-7QVT-2VE5, match: (1 vnt.) 1034802
-DEBUG:root:Mapping match found for code: (5 vnt.) 371 BAT. MAXELL (SR920SW, 370), match: (5 vnt.) 371 BAT. MAXELL (SR920SW, 370) Silver
-DEBUG:root:Mapping match found for code: (1 vnt.) 1044948, match: (1 vnt.) 1044948
-DEBUG:root:Mapping match found for code: (50 vnt.) LR621 L621F 10BL, match: (50 vnt.) LR621 L621F 10BL VINNIC AG1 ALKALINE
-DEBUG:root:Mapping match found for code: (1 vnt.) 104111324, match: (1 vnt.) 104111324
-DEBUG:root:Mapping match found for code: SWT80, match: (1 vnt.) SWT80
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020848, match: (1 vnt.) 10020848
-INFO:root:Orders inside valid: 49; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-DEBUG:root:c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx found. Updating...
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 304 distinct sku codes / data rows excl. headers
-DEBUG:root:Adding a new sku code: 364 MURATA SR621SW SONY. Q-ty: 10
-DEBUG:root:Updating quantity for code: 104111324. Previous quantity: 5, adding: 3
-DEBUG:root:Adding a new sku code: CR2450 5BL CAMELION LITHIUM 3V. Q-ty: 5
-DEBUG:root:Adding a new sku code: 395 MURATA SR927SW 399 SONY. Q-ty: 5
-DEBUG:root:Updating quantity for code: F21817. Previous quantity: 4, adding: 3
-DEBUG:root:Updating quantity for code: 27A 5BL L828F VINNIC 12V ALKALINE. Previous quantity: 10, adding: 25
-DEBUG:root:Adding a new sku code: LR721 10BL CAMELION AG11 ALK. 362/162. Q-ty: 10
-DEBUG:root:Adding a new sku code: T1138. Q-ty: 1
-DEBUG:root:Updating quantity for code: 1024349. Previous quantity: 1, adding: 2
-DEBUG:root:Adding a new sku code: EX01. Q-ty: 1
-DEBUG:root:Updating quantity for code: LR1131 10BL L1131F VINNIC AG10 ALKALINE. Previous quantity: 80, adding: 10
-DEBUG:root:Adding a new sku code: 1040721. Q-ty: 1
-DEBUG:root:Updating quantity for code: 106701520. Previous quantity: 10, adding: 1
-DEBUG:root:Updating quantity for code: 124070244. Previous quantity: 2, adding: 4
-DEBUG:root:Updating quantity for code: 1040725. Previous quantity: 6, adding: 3
-DEBUG:root:Adding a new sku code: CPG-18. Q-ty: 2
-DEBUG:root:Updating quantity for code: ELL48. Previous quantity: 2, adding: 1
-DEBUG:root:Updating quantity for code: 10020848. Previous quantity: 30, adding: 3
-DEBUG:root:Updating quantity for code: 10020845. Previous quantity: 5, adding: 1
-DEBUG:root:Adding a new sku code: CR80. Q-ty: 1
-DEBUG:root:Adding a new sku code: FN78. Q-ty: 2
-DEBUG:root:Adding a new sku code: 9780738723396. Q-ty: 1
-DEBUG:root:Adding a new sku code: LX21. Q-ty: 1
-DEBUG:root:Updating quantity for code: EX150. Previous quantity: 1, adding: 1
-DEBUG:root:Adding a new sku code: 1044948. Q-ty: 3
-DEBUG:root:Adding a new sku code: EX253. Q-ty: 1
-DEBUG:root:Updating quantity for code: 1034802. Previous quantity: 1, adding: 1
-DEBUG:root:Updating quantity for code: 106710976. Previous quantity: 12, adding: 1
-DEBUG:root:Updating quantity for code: 371 BAT. MAXELL (SR920SW, 370) Silver. Previous quantity: 12, adding: 5
-DEBUG:root:Adding a new sku code: LR621 L621F 10BL VINNIC AG1 ALKALINE. Q-ty: 50
-DEBUG:root:Updating quantity for code: AOP006. Previous quantity: 1, adding: 1
-DEBUG:root:Adding a new sku code: SWT80. Q-ty: 1
-INFO:root:Writing updated values done. Saving, closing...
-CRITICAL:root:Workbook c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx already open. Err: [Errno 13] Permission denied: 'c:\\Coding\\Ebay\\Custom Label Sorting\\Amazon Inventory Reduction.xlsx'
-ERROR:root:Unexpected error UPDATING helper file. Closing database connection, alerting VBA, exiting... Last error: Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling
-Traceback (most recent call last):
-  File "c:\Coding\Ebay\Custom Label Sorting\Helper Files\helper_file.py", line 100, in update_workbook
-    wb.save(inventory_file)
-  File "C:\Coding\Ebay\Custom Label Sorting\env\lib\site-packages\openpyxl\workbook\workbook.py", line 392, in save
-    save_workbook(self, filename)
-  File "C:\Coding\Ebay\Custom Label Sorting\env\lib\site-packages\openpyxl\writer\excel.py", line 291, in save_workbook
-    archive = ZipFile(filename, 'w', ZIP_DEFLATED, allowZip64=True)
-  File "c:\users\yo\appdata\local\programs\python\python37-32\lib\zipfile.py", line 1204, in __init__
-    self.fp = io.open(file, filemode)
-PermissionError: [Errno 13] Permission denied: 'c:\\Coding\\Ebay\\Custom Label Sorting\\Amazon Inventory Reduction.xlsx'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "c:\Coding\Ebay\Custom Label Sorting\Helper Files\parse_orders.py", line 193, in update_inventory_file
-    HelperFileUpdate(export_obj).update_workbook(self.inventory_file)
-  File "c:\Coding\Ebay\Custom Label Sorting\Helper Files\helper_file.py", line 105, in update_workbook
-    raise Exception('Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling')
-Exception: Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling
-INFO:root:
- NEW RUN STARTING: 2022.01.13 15:12
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-DEBUG:root:Backup for inventory_b4lrun.db suspended due to testing: True
-DEBUG:root:Before inserting new orders, orders table contains 0 entries associated with Amazon channel
-INFO:root:Returning 49/49 new/loaded orders for further processing
-INFO:root:Loaded file contains: 49. Further processing: 49 orders
-INFO:root:After checking with database, further processing: 49 new orders
-DEBUG:root:Old json files deleted. Ready for debugging
-INFO:root:Current sku mapping dict has 1354 entries
-DEBUG:root:Mapping match found for code: (10 vnt.) 364 MURATA SR621SW SONY, match: (10 vnt.) 364 MURATA SR621SW SONY
-DEBUG:root:Mapping match found for code: (1 vnt.) 104111324, match: (1 vnt.) 104111324
-DEBUG:root:Mapping match found for code: (5 vnt.) 395 MURATA SR927SW 399 SONY, match: (5 vnt.) 395 MURATA SR927SW 399 SONY
-DEBUG:root:Mapping match found for code: YU-3OC4-D2BD, match: (1 vnt.) F21817
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: (10 vnt.) LR721 10BL CAMELION AG11 ALK., match: (10 vnt.) LR721 10BL CAMELION AG11 ALK. 362/162
-DEBUG:root:Mapping match found for code: (1 vnt.) T1138, match: (1 vnt.) T1138
-DEBUG:root:Mapping match found for code: EX01, match: (1 vnt.) EX01
-DEBUG:root:Mapping match found for code: (10 vnt.) LR1131 10BL L1131F VINNIC AG10, match: (10 vnt.) LR1131 10BL L1131F VINNIC AG10 ALKALINE
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: (1 vnt.) 106701520, match: (1 vnt.) 106701520
-DEBUG:root:Mapping match found for code: YU-3OC4-D2BD, match: (1 vnt.) F21817
-DEBUG:root:Mapping match found for code: CC-8W4F-GSUG, match: (1 vnt.) 1040725
-DEBUG:root:Mapping match found for code: (2 vnt.) CPG-18, match: (2 vnt.) CPG-18
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020848, match: (1 vnt.) 10020848
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: CC-8W4F-GSUG, match: (1 vnt.) 1040725
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020848, match: (1 vnt.) 10020848
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020845, match: (1 vnt.) 10020845
-DEBUG:root:Mapping match found for code: CR80, match: (1 vnt.) CR80
-DEBUG:root:Mapping match found for code: YU-3OC4-D2BD, match: (1 vnt.) F21817
-DEBUG:root:Mapping match found for code: (5 vnt.) 27A 5BL L828F VINNIC 12V, match: (5 vnt.) 27A 5BL L828F VINNIC 12V ALKALINE
-DEBUG:root:Mapping match found for code: CW-93Y4-R5T4, match: (1 vnt.) 9780738723396
-DEBUG:root:Mapping match found for code: (1 vnt.) BT40, match: (1 vnt.) LX21
-DEBUG:root:Mapping match found for code: EX150(UK), match: (1 vnt.) EX150
-DEBUG:root:Mapping match found for code: CC-8W4F-GSUG, match: (1 vnt.) 1040725
-DEBUG:root:Mapping match found for code: (1 vnt.) 1044948, match: (1 vnt.) 1044948
-DEBUG:root:Mapping match found for code: DW-N1Z9-D8DA, match: (1 vnt.) EX253
-DEBUG:root:Mapping match found for code: (1 vnt.) 1044948, match: (1 vnt.) 1044948
-DEBUG:root:Mapping match found for code: VX-7QVT-2VE5, match: (1 vnt.) 1034802
-DEBUG:root:Mapping match found for code: (5 vnt.) 371 BAT. MAXELL (SR920SW, 370), match: (5 vnt.) 371 BAT. MAXELL (SR920SW, 370) Silver
-DEBUG:root:Mapping match found for code: (1 vnt.) 1044948, match: (1 vnt.) 1044948
-DEBUG:root:Mapping match found for code: (50 vnt.) LR621 L621F 10BL, match: (50 vnt.) LR621 L621F 10BL VINNIC AG1 ALKALINE
-DEBUG:root:Mapping match found for code: (1 vnt.) 104111324, match: (1 vnt.) 104111324
-DEBUG:root:Mapping match found for code: SWT80, match: (1 vnt.) SWT80
-DEBUG:root:Mapping match found for code: (1 vnt.) 10020848, match: (1 vnt.) 10020848
-INFO:root:Orders inside valid: 49; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-DEBUG:root:c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx found. Updating...
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Amazon Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 304 distinct sku codes / data rows excl. headers
-DEBUG:root:Adding a new sku code: 364 MURATA SR621SW SONY. Q-ty: 10
-DEBUG:root:Updating quantity for code: 104111324. Previous quantity: 5, adding: 3
-DEBUG:root:Adding a new sku code: CR2450 5BL CAMELION LITHIUM 3V. Q-ty: 5
-DEBUG:root:Adding a new sku code: 395 MURATA SR927SW 399 SONY. Q-ty: 5
-DEBUG:root:Updating quantity for code: F21817. Previous quantity: 4, adding: 3
-DEBUG:root:Updating quantity for code: 27A 5BL L828F VINNIC 12V ALKALINE. Previous quantity: 10, adding: 25
-DEBUG:root:Adding a new sku code: LR721 10BL CAMELION AG11 ALK. 362/162. Q-ty: 10
-DEBUG:root:Adding a new sku code: T1138. Q-ty: 1
-DEBUG:root:Updating quantity for code: 1024349. Previous quantity: 1, adding: 2
-DEBUG:root:Adding a new sku code: EX01. Q-ty: 1
-DEBUG:root:Updating quantity for code: LR1131 10BL L1131F VINNIC AG10 ALKALINE. Previous quantity: 80, adding: 10
-DEBUG:root:Adding a new sku code: 1040721. Q-ty: 1
-DEBUG:root:Updating quantity for code: 106701520. Previous quantity: 10, adding: 1
-DEBUG:root:Updating quantity for code: 124070244. Previous quantity: 2, adding: 4
-DEBUG:root:Updating quantity for code: 1040725. Previous quantity: 6, adding: 3
-DEBUG:root:Adding a new sku code: CPG-18. Q-ty: 2
-DEBUG:root:Updating quantity for code: ELL48. Previous quantity: 2, adding: 1
-DEBUG:root:Updating quantity for code: 10020848. Previous quantity: 30, adding: 3
-DEBUG:root:Updating quantity for code: 10020845. Previous quantity: 5, adding: 1
-DEBUG:root:Adding a new sku code: CR80. Q-ty: 1
-DEBUG:root:Adding a new sku code: FN78. Q-ty: 2
-DEBUG:root:Adding a new sku code: 9780738723396. Q-ty: 1
-DEBUG:root:Adding a new sku code: LX21. Q-ty: 1
-DEBUG:root:Updating quantity for code: EX150. Previous quantity: 1, adding: 1
-DEBUG:root:Adding a new sku code: 1044948. Q-ty: 3
-DEBUG:root:Adding a new sku code: EX253. Q-ty: 1
-DEBUG:root:Updating quantity for code: 1034802. Previous quantity: 1, adding: 1
-DEBUG:root:Updating quantity for code: 106710976. Previous quantity: 12, adding: 1
-DEBUG:root:Updating quantity for code: 371 BAT. MAXELL (SR920SW, 370) Silver. Previous quantity: 12, adding: 5
-DEBUG:root:Adding a new sku code: LR621 L621F 10BL VINNIC AG1 ALKALINE. Q-ty: 50
-DEBUG:root:Updating quantity for code: AOP006. Previous quantity: 1, adding: 1
-DEBUG:root:Adding a new sku code: SWT80. Q-ty: 1
-INFO:root:Writing updated values done. Saving, closing...
-INFO:root:Helper file Amazon Inventory Reduction.xlsx successfully updated, opening....
-DEBUG:root:This is backup path being saved to program_run fpath column: C:\Coding\Ebay\Working\Backups\Amazon exports\COM 2021.12.07.txt
-DEBUG:root:Added new run: <ProgramRun id: 1, sales_channel: Amazon, timestamp: 2022-01-13 15:12:39.877769, fpath: C:\Coding\Ebay\Working\Backups\Amazon exports\COM 2021.12.07.txt>, created backup
-DEBUG:root:49 new orders added to db (actual counter of commits)
-DEBUG:root:Backup for inventory_lrun.db suspended due to testing: True
-DEBUG:root:49 (order count) new orders added, flushing old records complete, backup after created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Helper file Inventory Reduction.xlsx successfully created, opening...
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Amazon 22-01-14 12-58.txt
+INFO:root:New database backup inventory_lrun.db created on: 2022-01-14 12:58 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
 INFO:root:Total of 49 new orders have been added to database, after exports were completed, closing connection to DB
 INFO:root:
-RUN ENDED: 2022.01.13 15:12
+RUN ENDED: 2022.01.14 12:58
 
 
+INFO:root:
+ NEW RUN STARTING: 2022.01.14 12:59
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2021.12.21.txt; sales_channel: Amazon. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon exports\\EU 2021.12.21.txt', 'Amazon']
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-01-14 12:59 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 222/222 new/loaded orders for further processing
+INFO:root:Loaded file contains: 222. Further processing: 222 orders
+INFO:root:After checking with database, further processing: 222 new orders
+INFO:root:Current sku mapping dict has 1354 entries
+INFO:root:Orders inside valid: 222; invalid: 0
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 32 distinct sku codes / data rows excl. headers
+INFO:root:Writing updated values done. Saving, closing...
+CRITICAL:root:Workbook C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx already open. Err: [Errno 13] Permission denied: 'C:\\Coding\\Ebay\\Custom Label Sorting\\Inventory Reduction.xlsx'
+ERROR:root:Unexpected error UPDATING helper file. Closing database connection, alerting VBA, exiting... Last error: Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling
+Traceback (most recent call last):
+  File "helper_file.py", line 100, in update_workbook
+  File "openpyxl\workbook\workbook.py", line 392, in save
+  File "openpyxl\writer\excel.py", line 291, in save_workbook
+  File "zipfile.py", line 1204, in __init__
+PermissionError: [Errno 13] Permission denied: 'C:\\Coding\\Ebay\\Custom Label Sorting\\Inventory Reduction.xlsx'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "parse_orders.py", line 193, in update_inventory_file
+  File "helper_file.py", line 105, in update_workbook
+Exception: Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling
+INFO:root:
+ NEW RUN STARTING: 2022.01.14 12:59
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2021.12.21.txt; sales_channel: Amazon. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon exports\\EU 2021.12.21.txt', 'Amazon']
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-01-14 12:59 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 222/222 new/loaded orders for further processing
+INFO:root:Loaded file contains: 222. Further processing: 222 orders
+INFO:root:After checking with database, further processing: 222 new orders
+INFO:root:Current sku mapping dict has 1354 entries
+INFO:root:Orders inside valid: 222; invalid: 0
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 32 distinct sku codes / data rows excl. headers
+INFO:root:Writing updated values done. Saving, closing...
+INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Amazon 22-01-14 12-59.txt
+INFO:root:New database backup inventory_lrun.db created on: 2022-01-14 12:59 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 222 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:
+RUN ENDED: 2022.01.14 12:59
+
+
+INFO:root:
+ NEW RUN STARTING: 2022.01.14 13:01
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2021-12.csv; sales_channel: Etsy. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Etsy\\EtsySoldOrders2021-12.csv', 'Etsy']
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-01-14 13:01 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 434/434 new/loaded orders for further processing
+INFO:root:Loaded file contains: 434. Further processing: 434 orders
+INFO:root:After checking with database, further processing: 434 new orders
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 5, skus: ['1 vnt. PC03', '1 vnt. PC21', '1 vnt. PC38']. Ordr being added to invalid list
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 3, skus: ['1 vnt. F28517-red', '1 vnt. F28517-blue']. Ordr being added to invalid list
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 2, skus: ['1 vnt. 1040830', '1 vnt. 1034630', '1 vnt. 10022198']. Ordr being added to invalid list
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 2, skus: ['1 vnt. 1040830', '1 vnt. 1034630', '1 vnt. T1147']. Ordr being added to invalid list
+INFO:root:Orders inside valid: 430; invalid: 4
+INFO:root:Invalid orders exported at C:\Coding\Ebay\Custom Label Sorting\Etsy invalid_orders 2022.01.14 13.01.txt and started.
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 163 distinct sku codes / data rows excl. headers
+INFO:root:Writing updated values done. Saving, closing...
+INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Etsy 22-01-14 13-02.csv
+INFO:root:New database backup inventory_lrun.db created on: 2022-01-14 13:02 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 434 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:
+RUN ENDED: 2022.01.14 13:02
+
+
+INFO:root:
+ NEW RUN STARTING: 2022.01.14 13:20
+WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
+INFO:root:Returning 0/434 new/loaded orders for further processing
+INFO:root:Loaded file contains: 434. Further processing: 0 orders
+INFO:root:After checking with database, further processing: 0 new orders
+INFO:root:Orders inside valid: 0; invalid: 0
+INFO:root:No new orders found. Terminating, closing database connection, alerting VBA.
+INFO:root:
+ NEW RUN STARTING: 2022.01.14 13:24
+WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
+INFO:root:Returning 0/222 new/loaded orders for further processing
+INFO:root:Loaded file contains: 222. Further processing: 0 orders
+INFO:root:After checking with database, further processing: 0 new orders
+WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_valid_parsed.json, but apparently human has taken care of it first. (File not found)
+WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_invalid_orders.json, but apparently human has taken care of it first. (File not found)
+INFO:root:Current sku mapping dict has 1354 entries
+INFO:root:Orders inside valid: 0; invalid: 0
+INFO:root:No new orders found. Terminating, closing database connection, alerting VBA.
+INFO:root:
+ NEW RUN STARTING: 2022.01.17 14:10
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2021-9.csv; sales_channel: Etsy. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Etsy\\EtsySoldOrders2021-9.csv', 'Etsy']
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-01-17 14:10 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 169/169 new/loaded orders for further processing
+INFO:root:Loaded file contains: 169. Further processing: 169 orders
+INFO:root:After checking with database, further processing: 169 new orders
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 4, skus: ['1 vnt. EX163', '1 vnt. KIT24', '1 vnt. EX264']. Ordr being added to invalid list
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 20, skus: ['1 vnt. 10020849', '1 vnt. 10020848']. Ordr being added to invalid list
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 4, skus: ['1 vnt. 10020849', '1 vnt. 10020848']. Ordr being added to invalid list
+INFO:root:Orders inside valid: 166; invalid: 3
+INFO:root:Invalid orders exported at C:\Coding\Ebay\Custom Label Sorting\Etsy invalid_orders 2022.01.17 14.10.txt and started.
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 0 distinct sku codes / data rows excl. headers
+INFO:root:Writing updated values done. Saving, closing...
+INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Etsy 22-01-17 14-11.csv
+INFO:root:New database backup inventory_lrun.db created on: 2022-01-17 14:11 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 169 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:
+RUN ENDED: 2022.01.17 14:11
+
+
+INFO:root:
+ NEW RUN STARTING: 2022.01.17 15:53
+WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
+CRITICAL:root:Failed while cleaning loaded orders. Last order: {'Sale Date,"Order ID","Buyer User ID","Full Name","First Name","Last Name","Number of Items","Payment Method","Date Shipped","Street 1","Street 2","Ship City","Ship State","Ship Zipcode","Ship Country",Currency,"Order Value","Coupon Code","Coupon Details","Discount Amount","Shipping Discount",Shipping,"Sales Tax","Order Total",Status,"Card Processing Fees","Order Net","Adjusted Order Total","Adjusted Card Processing Fees","Adjusted Net Order Amount",Buyer,"Order Type","Payment Type","InPerson Discount","InPerson Location",SKU;;;;;;': '01/17/22,2348251033,olh7cuxmcbihwqtr,"Amy Wheeler",Amy,Wheeler,1,"Credit Card",,"12429 S Thomas Rd",,Molalla,OR,97038,"United States",EUR,21.49,15OFF30DAYS,"% off",3.22,0.00,0.00,0.00,18.27,,1.03,17.24,0.00,0.00,0.00,"Amy Wheeler",online,online_cc,,,"1 vnt. 1031264";;;;;;'} Err: 'SKU'
