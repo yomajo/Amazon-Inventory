@@ -19,7 +19,7 @@ SALES_CHANNEL = 'Etsy'
 EXPECTED_SYS_ARGS = 3
 
 if is_windows_machine():
-    ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-1.csv'
+    ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4 (2).csv'    
     # ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2021.12.21.txt'
     # ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Amazon exports\COM 2021.12.07.txt'
 else:
@@ -99,7 +99,6 @@ def main():
     logging.info(f'Loaded file contains: {len(cleaned_source_orders)}. Further processing: {len(new_orders)} orders')
 
     # Parse orders, export target files
-    logging.info(f'After checking with database, further processing: {len(new_orders)} new orders')
     ParseOrders(new_orders, db_client, sales_channel, proxy_keys).export_orders(TESTING)
 
     print(VBA_OK)
