@@ -15,12 +15,12 @@ logging.basicConfig(handlers=[logging.FileHandler(log_path, 'a', 'utf-8')], leve
 
 # GLOBAL VARIABLES
 TESTING = False
-SALES_CHANNEL = 'Etsy'
+SALES_CHANNEL = 'Amazon'
 EXPECTED_SYS_ARGS = 3
 
 if is_windows_machine():
-    ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4 (2).csv'    
-    # ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2021.12.21.txt'
+    # ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4 (2).csv'    
+    ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2022.05.04.txt'
     # ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Amazon exports\COM 2021.12.07.txt'
 else:
     ORDERS_SOURCE_FILE = r'/home/devyo/Coding/Git/Amazon Inventory/Amazon exports/run1.txt'
