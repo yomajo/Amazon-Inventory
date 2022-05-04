@@ -1,40 +1,22 @@
 INFO:root:
- NEW RUN STARTING: 2022.05.04 12:51
-INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4 (2).csv; sales_channel: Etsy. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Etsy\\EtsySoldOrders2022-4 (2).csv', 'Etsy']
-INFO:root:Database has been created at C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory.db
-INFO:root:New database backup inventory_b4lrun.db created on: 2022-05-04 12:51 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
-INFO:root:Returning 296/296 new/loaded orders for further processing
-INFO:root:Loaded file contains: 296. Further processing: 296 orders
-INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 3, skus: ['1 vnt. 1038249', '1 vnt. 10023018']. Ordr being added to invalid list
-INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 3, skus: ['1 vnt. T1141', '1 vnt. 1040830', '1 vnt. 1034630', '1 vnt. T1151']. Ordr being added to invalid list
-INFO:root:Orders inside valid: 294; invalid: 2
-INFO:root:Invalid orders exported at C:\Coding\Ebay\Custom Label Sorting\Etsy invalid_orders 2022.05.04 12.51.txt and started.
-INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+ NEW RUN STARTING: 2022.05.04 13:08
+WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
+WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_raw_orders.json, but apparently human has taken care of it first. (File not found)
+INFO:root:Database has been created at c:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory.db
+INFO:root:Returning 76/76 new/loaded orders for further processing
+INFO:root:Loaded file contains: 76. Further processing: 76 orders
+WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_new_unparsed.json, but apparently human has taken care of it first. (File not found)
+WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_valid_parsed.json, but apparently human has taken care of it first. (File not found)
+WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_invalid_orders.json, but apparently human has taken care of it first. (File not found)
+INFO:root:Current sku mapping dict has 1354 entries
+INFO:root:Orders inside valid: 76; invalid: 0
+INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
+INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
 INFO:root:Before updating workbook has 0 distinct sku codes / data rows excl. headers
 INFO:root:Writing updated values done. Saving, closing...
 INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
-INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Etsy 22-05-04 12-51.csv
-INFO:root:New database backup inventory_lrun.db created on: 2022-05-04 12:51 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
-INFO:root:Total of 296 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:Total of 76 new orders have been added to database, after exports were completed, closing connection to DB
 INFO:root:
-RUN ENDED: 2022.05.04 12:51
-
-
-INFO:root:
- NEW RUN STARTING: 2022.05.04 12:52
-INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4.csv; sales_channel: Etsy. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Etsy\\EtsySoldOrders2022-4.csv', 'Etsy']
-INFO:root:New database backup inventory_b4lrun.db created on: 2022-05-04 12:52 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
-INFO:root:Returning 25/321 new/loaded orders for further processing
-INFO:root:Loaded file contains: 321. Further processing: 25 orders
-INFO:root:Orders inside valid: 25; invalid: 0
-INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 0 distinct sku codes / data rows excl. headers
-INFO:root:Writing updated values done. Saving, closing...
-INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
-INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Etsy 22-05-04 12-52.csv
-INFO:root:New database backup inventory_lrun.db created on: 2022-05-04 12:52 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
-INFO:root:Total of 25 new orders have been added to database, after exports were completed, closing connection to DB
-INFO:root:
-RUN ENDED: 2022.05.04 12:52
+RUN ENDED: 2022.05.04 13:08
 
 
