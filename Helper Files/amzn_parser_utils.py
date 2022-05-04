@@ -114,6 +114,12 @@ def dump_to_json(export_obj, json_fname:str) -> str:
         json.dump(export_obj, f, indent=4)
     return json_path
 
+def read_json_to_obj(json_file_path:str):
+    '''reads json file and returns python object'''
+    with open(json_file_path, 'r', encoding='utf-8') as f:
+        orders = json.load(f)
+    return orders
+
 def sort_by_quantity(sku_qties:dict) -> list:
     '''sorts {'sku1': qty1, 'sku2': qty2, ...} dict
     by descending quantities. Returns list of tuples:
