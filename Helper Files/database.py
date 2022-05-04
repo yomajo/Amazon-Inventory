@@ -12,7 +12,7 @@ import shutil
 
 
 # GLOBAL VARIABLES
-ORDERS_ARCHIVE_DAYS = 60
+ORDERS_ARCHIVE_DAYS = 120
 DATABASE_NAME = 'inventory.db'
 BACKUP_DB_BEFORE_NAME = 'inventory_b4lrun.db'
 BACKUP_DB_AFTER_NAME = 'inventory_lrun.db'
