@@ -90,6 +90,10 @@ class ParseOrders():
                 logging.info(f'Etsy order q-ty and skus may yield various combinations. Qty: {qty_purchased}, skus: {skus}. Ordr being added to invalid list')
                 invalid_orders.append(order)
             else:
+                if len(skus) == qty_purchased:
+                    # order having 7 skus in order will have qty_purchased 7. In reality 7 items were purchased w/ individual quantity = 1 
+                    qty_purchased = 1
+
                 parsed_order = self._parse_etsy_order_qty_skus(order, qty_purchased, skus)
                 valid_orders.append(parsed_order)
         return valid_orders, invalid_orders
