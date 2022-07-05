@@ -99,21 +99,20 @@ def main():
     
     # Get cleaned source orders
     cleaned_source_orders = get_cleaned_orders(source_fpath, sales_channel, proxy_keys)
-
-    '''---CHECK everything in db_client---'''
     
     db_client = SQLAlchemyOrdersDB(cleaned_source_orders, source_fpath, sales_channel, proxy_keys, testing=TESTING)
     new_orders = db_client.get_new_orders_only()
     logging.info(f'Loaded file contains: {len(cleaned_source_orders)}. Further processing: {len(new_orders)} orders')
 
-    '''---CHECK everything in db_client---'''
-
-    print('------------ENDING-NOW--------------')
-    exit()
+    '---- REVIEW PARSE ORDERS ----'
 
     # Parse orders, export target files
     ParseOrders(new_orders, db_client, sales_channel, proxy_keys).export_orders(TESTING)
 
+    '---- REVIEW PARSE ORDERS ----'
+
+    print('------------ENDING-NOW--------------')
+    exit()
     print(VBA_OK)
     logging.info(f'\nRUN ENDED: {datetime.today().strftime("%Y.%m.%d %H:%M")}\n\n')
 

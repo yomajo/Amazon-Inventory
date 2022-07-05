@@ -33,7 +33,7 @@ class ProgramRun(Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     fpath = Column(String, nullable=False)
-    sales_channel = Column(String, nullable=False)      # Amazon / Etsy
+    sales_channel = Column(String, nullable=False)      # Amazon /Amazon Warehouse /Etsy
     timestamp = Column(TIMESTAMP(timezone=False), default=datetime.datetime.now())
     orders = relationship('Order', cascade='all, delete', cascade_backrefs=True,
                 passive_deletes=False, passive_updates=False, backref='run_obj')
@@ -91,7 +91,7 @@ class SQLAlchemyOrdersDB:
 
     source_file_path - abs path to source file for orders (Amazon / Etsy)
 
-    sales_channel - str identifier for db entry, backup file naming. Expected value: ['Amazon', 'Etsy']
+    sales_channel - str identifier for db entry, backup file naming. Expected value: ['Amazon', 'Amazon Warehouse', 'Etsy']
 
     proxy_keys - dict mapper of internal (based on amazon) order keys vs external sales_channel keys 
 
@@ -129,8 +129,7 @@ class SQLAlchemyOrdersDB:
         '''returns database session object to work outside the scope of class. For example querying'''
         self.__get_engine()
         Session = sessionmaker(bind=self.engine)
-        session = Session()
-        return session
+        return Session()
 
     def add_orders_to_db(self):
         '''filters passed orders to cls to only those, whose order_id
@@ -166,8 +165,8 @@ class SQLAlchemyOrdersDB:
                             run = self.new_run.id)
             if self.new_run.sales_channel != 'Etsy':
                 # Additionally add original order-id (may have duplicates for multiple items in shopping cart) for AmazonCOM, AmazonEU
-                # CHECK FOR AMAZON WAREHOUSE
-                new_order.order_id_secondary = order_dict['order-id']
+                # Both Amazon and Amazon Warehouse have 'secondary-order-id' secondary key
+                new_order.order_id_secondary = order_dict[self.proxy_keys['secondary-order-id']]
             
             self.session.add(new_order)
             self.session.commit()
