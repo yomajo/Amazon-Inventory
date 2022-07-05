@@ -17,8 +17,6 @@ SKU_MAPPING_WB_NAME = 'Amazon SKU Mapping.xlsx'
 SHEET_NAME = 'SKU codes'
 HEADERS = ['sku', 'quantity']
 
-EXPECTED_SALES_CHANNELS = ['Amazon', 'Etsy']
-
 AMAZON_KEYS = {
     'order-id' : 'order-item-id',
     'secondary-order-id' : 'order-id',
@@ -55,6 +53,38 @@ AMAZON_KEYS = {
     'sku_quantities' : 'sku_quantities',
 }
 
+AMAZON_WAREHOUSE_KEYS = {
+    # universal key : csv / txt key
+    'order-id' : 'Shipment Item ID',
+    'secondary-order-id' : 'Amazon Order Id',
+    'purchase-date' : 'Purchase Date',
+    'payments-date' : 'Payments Date',
+    'buyer-email' : 'Buyer E-mail',
+    'buyer-name' : 'Buyer Name',
+    'buyer-phone-number' : 'Buyer Phone Number',
+    'sku' : 'Merchant SKU',
+    'title' : 'Title',
+    'quantity-purchased' : 'Dispatched Quantity',
+    'currency' : 'Currency',
+    'item-price' : 'Item Price',
+    'item-tax' : 'Item Tax',
+    'shipping-price' : 'Delivery Price',
+    'shipping-tax' : 'Delivery Tax',
+    'ship-service-level' : 'Delivery Service Level',
+    'recipient-name' : 'Recipient Name',
+    'ship-address-1' : 'Delivery Address 1',
+    'ship-address-2' : 'Delivery Address 2',
+    'ship-address-3' : 'Delivery Address 3',
+    'ship-city' : 'Delivery City/Town',
+    'ship-state' : 'Delivery County',
+    'ship-postal-code' : 'Delivery Postcode',
+    'ship-country' : 'Delivery Country Code',
+    'ship-phone-number' : 'Delivery Phone Number',
+    'sales-channel' : 'Sales Channel',
+    # added during processing
+    'sku_quantities' : 'sku_quantities',
+}
+
 ETSY_KEYS = {
     'order-id' : 'Order ID',
     'same-buyer-order-id' : 'Order ID',
@@ -87,6 +117,8 @@ ETSY_KEYS = {
     # added during processing
     'sku_quantities' : 'sku_quantities',
 }
+
+SALES_CHANNEL_PROXY_KEYS = {'Amazon': AMAZON_KEYS, 'Amazon Warehouse': AMAZON_WAREHOUSE_KEYS, 'Etsy': ETSY_KEYS}
 
 COUNTRY_CODES = {
     'AFGHANISTAN':'AF',

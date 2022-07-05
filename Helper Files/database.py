@@ -1,14 +1,14 @@
-from amzn_parser_utils import get_output_dir, create_src_file_backup, delete_file
+import datetime
+import logging
+import os
+import shutil
 from sqlalchemy import create_engine, Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.exc import IntegrityError
-import datetime
-import logging
-import os
-import shutil
+from utils import get_output_dir, create_src_file_backup, delete_file
 
 
 # GLOBAL VARIABLES
@@ -45,8 +45,15 @@ class ProgramRun(Base):
 class Order(Base):
     '''database table model representing Order
     
-    NOTE: unique primary key is: order['order-item-id'] for Amazon; order['Order ID'] for Etsy
-    order_id_secondary = order['order-id'] for Amazon; null for Etsy'''
+    NOTE: unique primary key is:
+        order['order-item-id'] for Amazon;
+        order['Shipment Item ID'] for Amazon Warehouse;
+        order['Order ID'] for Etsy;
+
+        order_id_secondary:
+        order['order-id'] for Amazon;
+        order['Amazon Order Id'] for Amazon Warehouse;
+        null for Etsy'''
     __tablename__ = 'order'
 
     def __init__(self, order_id, purchase_date, buyer_name, run, **kwargs):
@@ -159,6 +166,7 @@ class SQLAlchemyOrdersDB:
                             run = self.new_run.id)
             if self.new_run.sales_channel != 'Etsy':
                 # Additionally add original order-id (may have duplicates for multiple items in shopping cart) for AmazonCOM, AmazonEU
+                # CHECK FOR AMAZON WAREHOUSE
                 new_order.order_id_secondary = order_dict['order-id']
             
             self.session.add(new_order)

@@ -1,9 +1,10 @@
-from amzn_parser_utils import get_output_dir, get_last_used_row_col, sort_by_quantity, update_col_widths, adjust_col_widths
-from constants import VBA_ALREADY_OPEN_ERROR, SHEET_NAME, HEADERS
-from shutil import copy
 import logging
 import openpyxl
 import os
+from shutil import copy
+from utils import get_output_dir, get_last_used_row_col, sort_by_quantity
+from utils import update_col_widths, adjust_col_widths
+from constants import VBA_ALREADY_OPEN_ERROR, SHEET_NAME, HEADERS
 
 
 # GLOBAL VARIABLES

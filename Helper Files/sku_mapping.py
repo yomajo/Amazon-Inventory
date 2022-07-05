@@ -1,6 +1,6 @@
-from amzn_parser_utils import get_last_used_row_col, alert_VBA_duplicate_mapping_sku
-import openpyxl
 import logging
+import openpyxl
+from utils import get_last_used_row_col, alert_VBA_duplicate_mapping_sku
 
 
 class SKUMapping():
