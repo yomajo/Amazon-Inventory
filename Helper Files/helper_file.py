@@ -45,7 +45,7 @@ class HelperFileCreate():
         adjust_col_widths(self.ws, self.col_widths)
 
     def __fill_headers(self):
-        '''inserts 3 headers in 1:1 row. Bold style and update col widths dict for all'''
+        '''inserts headers from HEADERS list in 1:1 row. Bold style and update col widths dict for all'''
         for col, header in enumerate(HEADERS, start=1):
             self.ws.cell(self.row_cursor, col).value = header
             self.ws.cell(self.row_cursor, col).font = BOLD_STYLE
@@ -119,7 +119,7 @@ class HelperFileUpdate():
 
     def read_map_ws_data_to_list(self) -> dict:
         ws_limits = get_last_used_row_col(self.ws)
-        assert ws_limits['max_col'] == 2, 'Template of helper file changed! Maximum column used in ws != 2'
+        assert ws_limits['max_col'] == len(HEADERS), f'Template of helper file changed! Maximum column used in ws {ws_limits["max_col"]}; expected: {len(HEADERS)}'
         return self.get_ws_data_reset_highlight(ws_limits)
 
     def get_ws_data_reset_highlight(self, ws_limits:dict) -> dict:
@@ -164,7 +164,11 @@ class HelperFileUpdate():
                 current_skus[sku] = export_obj[sku]
             else:
                 logging.debug(f'Updating quantity for code: {sku}. Previous quantity: {current_skus[sku]}, adding: {export_obj[sku]}')
-                current_skus[sku] += export_obj[sku]
+                try:
+                    current_skus[sku] += export_obj[sku]
+                except TypeError as e:
+                    logging.warning(f'Could not update SKU: {sku} quantity. String read from workbook. Concatenating string instead')
+                    current_skus[sku] += f'+{export_obj[sku]}'
         return current_skus
 
     def write_updated_to_ws(self, sorted_updated_skus:list):

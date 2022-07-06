@@ -1,6 +1,7 @@
 # VARIABLES
 QUANTITY_PATTERN = {
     'Amazon' : r'^\(\d+\svnt.\)\s',
+    'Amazon Warehouse' : r'^\(\d+\svnt.\)\s',
     'Etsy' : r'^\d+\svnt.\s',
     }
 

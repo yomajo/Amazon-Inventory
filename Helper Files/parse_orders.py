@@ -4,9 +4,10 @@ import os
 from datetime import datetime
 from utils import get_output_dir, get_inner_qty_sku, get_order_quantity, dump_to_json
 from utils import delete_file, export_invalid_order_ids
-from constants import QUANTITY_PATTERN, EXPORT_FILE, VBA_ERROR_ALERT, VBA_NO_NEW_JOB, VBA_KEYERROR_ALERT, SKU_MAPPING_WB_NAME
 from helper_file import HelperFileCreate, HelperFileUpdate
 from sku_mapping import SKUMapping
+from constants import QUANTITY_PATTERN, EXPORT_FILE, SKU_MAPPING_WB_NAME
+from constants import VBA_ERROR_ALERT, VBA_NO_NEW_JOB, VBA_KEYERROR_ALERT
 
 
 class ParseOrders():
@@ -15,7 +16,7 @@ class ParseOrders():
     Args:
     - orders:list - list of orders
     - db_client:object - instance of database class
-    - sales_channel:str - 'Etsy' / 'Amazon'
+    - sales_channel:str - 'Etsy' / 'Amazon' / 'Amazon Warehouse'
     - proxy_keys:dict - keys mapping specific to sales channel
     
     Main method:
@@ -49,11 +50,14 @@ class ParseOrders():
         if testing:
             self.__delete_debug_jsons()
             dump_to_json(self.orders, 'DEBUG_new_unparsed.json')
+
         valid_orders, invalid_orders = self._parse_based_on_sales_channel()
         logging.info(f'Orders inside valid: {len(valid_orders)}; invalid: {len(invalid_orders)}')
         self._exit_no_new_valid_orders(valid_orders, invalid_orders)
         export_obj = self.get_export_obj(valid_orders)
+        
         if testing:
+            # CHANGE BEHAVIOR WHEN TESTING HERE
             logging.info(f'Testing mode: {testing}. Change behaviour in export_orders method in ParseOrders class')
             print(f'Testing mode: {testing}. Change behaviour in export_orders method in ParseOrders class')
             dump_to_json(valid_orders, 'DEBUG_valid_parsed.json')
@@ -61,6 +65,7 @@ class ParseOrders():
             self.export_update_inventory_helper_file(export_obj)
             self.push_orders_to_db()
             return
+
         self.export_update_inventory_helper_file(export_obj)
         self.push_orders_to_db()
 
@@ -79,7 +84,7 @@ class ParseOrders():
         if self.sales_channel == 'Etsy':
             return self._parse_etsy_orders(valid_orders, invalid_orders)
         else:
-            # AmazonCOM / AmazonEU
+            # AmazonCOM / AmazonEU / Amazon Warehouse
             return self._parse_amazon_orders(valid_orders, invalid_orders)
 
     def _parse_etsy_orders(self, valid_orders:list, invalid_orders:list):
@@ -159,7 +164,7 @@ class ParseOrders():
         if invalid_orders:
             export_invalid_order_ids(invalid_orders, self.proxy_keys, self.invalid_orders_fpath)
             os.startfile(self.invalid_orders_fpath)
-            logging.info(f'Invalid orders exported at {self.invalid_orders_fpath} and started.')
+            logging.info(f'Invalid orders exported at {self.invalid_orders_fpath} and opened.')
 
     def get_export_obj(self, orders:list) -> dict:
         '''returns export object: export_obj = {'sku1': qty1, 'sku2': qty2, ...}'''

@@ -1,4 +1,3 @@
-import platform
 import logging
 import shutil
 import json
@@ -42,11 +41,6 @@ def recreate_txt_file(abs_fpath:str, binary_data):
             f.write(binary_data)
     except TypeError:
         print(f'Expected binary when writing contents to file {abs_fpath}')
-
-def is_windows_machine() -> bool:
-    '''returns True if machine executing the code is Windows based'''
-    machine_os = platform.system()
-    return True if machine_os == 'Windows' else False
 
 def alert_vba_date_count(filter_date, orders_count):
     '''Passing two variables for VBA to display for user in message box'''
@@ -237,14 +231,20 @@ def adjust_col_widths(ws:object, col_widths:dict):
 
 def get_file_encoding_delimiter(fpath:str) -> tuple:
     '''returns tuple of file encoding and delimiter'''
-    with open(fpath, mode='rb') as f_as_bytes, open(fpath, mode='r') as f_text:
+    with open(fpath, mode='rb') as f_as_bytes:
         byte_contents = f_as_bytes.read()
+        try:
+            enc_data = chardet.detect(byte_contents)
+            encoding = enc_data['encoding']
+        except Exception as e:
+            logging.warning(f'chardet err: {e} when figuring out file {os.path.basename(fpath)} encoding. Defaulting to utf-8')
+            encoding = 'utf-8'
+
+    with open(fpath, mode='r', encoding=encoding) as f_text:
         text_contents = f_text.read()
-        enc_data = chardet.detect(byte_contents)
-    
         sniffer = csv.Sniffer()
         dialect = sniffer.sniff(text_contents)
-    return enc_data['encoding'], dialect.delimiter
+    return encoding, dialect.delimiter
 
 if __name__ == "__main__":
     pass

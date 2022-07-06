@@ -4,30 +4,31 @@ import csv
 import os
 from datetime import datetime
 import sqlalchemy.sql.default_comparator    #neccessary for executable packing
-from constants import SALES_CHANNEL_PROXY_KEYS, AMAZON_KEYS, ETSY_KEYS
-from constants import VBA_ERROR_ALERT, VBA_KEYERROR_ALERT, VBA_OK
-from utils import get_output_dir, is_windows_machine, split_sku, get_country_code
-from utils import dump_to_json, delete_file, get_file_encoding_delimiter
-from parse_orders import ParseOrders
 from database import SQLAlchemyOrdersDB
+from parse_orders import ParseOrders
+from constants import SALES_CHANNEL_PROXY_KEYS
+from constants import VBA_ERROR_ALERT, VBA_KEYERROR_ALERT, VBA_OK
+from utils import get_output_dir, split_sku, get_country_code
+from utils import dump_to_json, delete_file, get_file_encoding_delimiter
 
 
 # Logging config:
 log_path = os.path.join(get_output_dir(client_file=False), 'inventory.log')
-logging.basicConfig(handlers=[logging.FileHandler(log_path, 'a', 'utf-8')], level=logging.DEBUG)
+logging.basicConfig(handlers=[logging.FileHandler(log_path, 'a', 'utf-8')], level=logging.INFO)
 
 # GLOBAL VARIABLES
-TESTING = True
-SALES_CHANNEL = 'Amazon Warehouse'
-EXPECTED_SYS_ARGS = 3
+TEST_CASES = [
+    {'channel': 'Amazon', 'file': r'C:\Coding\Ebay\Working\Backups\Amazon exports\COM 2022.03.10.txt'},
+    {'channel': 'Amazon Warehouse', 'file': r'C:\Coding\Ebay\Working\Backups\Amazon warehouse csv\warehouse2.csv'},
+    {'channel': 'Etsy', 'file': r'C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4 (2).csv'},
+    ]
 
-if is_windows_machine():
-    # ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4 (2).csv'    
-    # ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2022.05.04.txt'
-    # ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Amazon warehouse csv\147279019174.csv'
-    ORDERS_SOURCE_FILE = r'C:\Coding\Ebay\Working\Backups\Amazon warehouse csv\warehouse2.csv'
-else:
-    ORDERS_SOURCE_FILE = r'/home/devyo/Coding/Git/Amazon Inventory/Amazon exports/run1.txt'
+TESTING = False
+TEST_CASE = TEST_CASES[0]
+
+SALES_CHANNEL = TEST_CASE['channel']
+ORDERS_SOURCE_FILE = TEST_CASE['file']
+EXPECTED_SYS_ARGS = 3
 
 
 def get_cleaned_orders(source_file:str, sales_channel:str, proxy_keys:dict) -> list:
@@ -74,7 +75,7 @@ def clean_orders(orders:list, sales_channel:str, proxy_keys:dict) -> list:
 def parse_args():
     '''returns arguments passed from VBA or hardcoded test environment'''
     if TESTING:
-        print('--- RUNNING IN TESTING MODE. Using hardcoded args---')
+        print(f'--- RUNNING IN TESTING MODE. Using hardcoded args ch: {SALES_CHANNEL}, f: {os.path.basename(ORDERS_SOURCE_FILE)}---')
         logging.warning('--- RUNNING IN TESTING MODE. Using hardcoded args---')
         assert SALES_CHANNEL in SALES_CHANNEL_PROXY_KEYS.keys(), f'Unexpected sales_channel value passed from VBA side: {SALES_CHANNEL}'
         return ORDERS_SOURCE_FILE, SALES_CHANNEL
@@ -104,15 +105,9 @@ def main():
     new_orders = db_client.get_new_orders_only()
     logging.info(f'Loaded file contains: {len(cleaned_source_orders)}. Further processing: {len(new_orders)} orders')
 
-    '---- REVIEW PARSE ORDERS ----'
-
     # Parse orders, export target files
     ParseOrders(new_orders, db_client, sales_channel, proxy_keys).export_orders(TESTING)
 
-    '---- REVIEW PARSE ORDERS ----'
-
-    print('------------ENDING-NOW--------------')
-    exit()
     print(VBA_OK)
     logging.info(f'\nRUN ENDED: {datetime.today().strftime("%Y.%m.%d %H:%M")}\n\n')
 

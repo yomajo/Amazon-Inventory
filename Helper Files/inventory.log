@@ -1,70 +1,86 @@
 INFO:root:
- NEW RUN STARTING: 2022.05.04 13:08
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_raw_orders.json, but apparently human has taken care of it first. (File not found)
-INFO:root:Database has been created at c:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory.db
-INFO:root:Returning 76/76 new/loaded orders for further processing
-INFO:root:Loaded file contains: 76. Further processing: 76 orders
-WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_new_unparsed.json, but apparently human has taken care of it first. (File not found)
-WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_valid_parsed.json, but apparently human has taken care of it first. (File not found)
-WARNING:root:Tried deleting file: c:\Coding\Ebay\Custom Label Sorting\Helper Files\DEBUG_invalid_orders.json, but apparently human has taken care of it first. (File not found)
+ NEW RUN STARTING: 2022.07.06 09:05
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon warehouse csv\warehouse2.csv; sales_channel: Amazon Warehouse. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon warehouse csv\\warehouse2.csv', 'Amazon Warehouse']
+INFO:root:Database has been created at C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory.db
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-07-06 09:05 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 132/132 new/loaded orders for further processing
+INFO:root:Loaded file contains: 132. Further processing: 132 orders
 INFO:root:Current sku mapping dict has 1354 entries
-INFO:root:Orders inside valid: 76; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Orders inside valid: 132; invalid: 0
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 275 distinct sku codes / data rows excl. headers
+INFO:root:Writing updated values done. Saving, closing...
+INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Amazon Warehouse 22-07-06 09-05.csv
+INFO:root:New database backup inventory_lrun.db created on: 2022-07-06 09:05 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 132 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:
+RUN ENDED: 2022.07.06 09:05
+
+
+INFO:root:
+ NEW RUN STARTING: 2022.07.06 09:07
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2022.01.25.txt; sales_channel: Amazon. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon exports\\EU 2022.01.25.txt', 'Amazon']
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-07-06 09:07 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 654/654 new/loaded orders for further processing
+INFO:root:Loaded file contains: 654. Further processing: 654 orders
+INFO:root:Current sku mapping dict has 1354 entries
+INFO:root:Orders inside valid: 654; invalid: 0
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 275 distinct sku codes / data rows excl. headers
+INFO:root:Writing updated values done. Saving, closing...
+CRITICAL:root:Workbook C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx already open. Err: [Errno 13] Permission denied: 'C:\\Coding\\Ebay\\Custom Label Sorting\\Inventory Reduction.xlsx'
+ERROR:root:Unexpected error UPDATING helper file. Closing database connection, alerting VBA, exiting... Last error: Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling
+Traceback (most recent call last):
+  File "helper_file.py", line 101, in update_workbook
+  File "openpyxl\workbook\workbook.py", line 392, in save
+  File "openpyxl\writer\excel.py", line 291, in save_workbook
+  File "zipfile.py", line 1204, in __init__
+PermissionError: [Errno 13] Permission denied: 'C:\\Coding\\Ebay\\Custom Label Sorting\\Inventory Reduction.xlsx'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "parse_orders.py", line 203, in update_inventory_file
+  File "helper_file.py", line 106, in update_workbook
+Exception: Transition from HelperFileUpdate.updateworkbook error handling to ParseOrders.export_update_inventory_helper_file error handling
+INFO:root:
+ NEW RUN STARTING: 2022.07.06 09:07
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4.csv; sales_channel: Etsy. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Etsy\\EtsySoldOrders2022-4.csv', 'Etsy']
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-07-06 09:07 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 321/321 new/loaded orders for further processing
+INFO:root:Loaded file contains: 321. Further processing: 321 orders
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 3, skus: ['1 vnt. 1038249', '1 vnt. 10023018']. Ordr being added to invalid list
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 3, skus: ['1 vnt. T1141', '1 vnt. 1040830', '1 vnt. 1034630', '1 vnt. T1151']. Ordr being added to invalid list
+INFO:root:Orders inside valid: 319; invalid: 2
+INFO:root:Invalid orders exported at C:\Coding\Ebay\Custom Label Sorting\Etsy invalid_orders 2022.07.06 09.07.txt and opened.
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 275 distinct sku codes / data rows excl. headers
+INFO:root:Writing updated values done. Saving, closing...
+INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Etsy 22-07-06 09-07.csv
+INFO:root:New database backup inventory_lrun.db created on: 2022-07-06 09:07 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 321 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:
+RUN ENDED: 2022.07.06 09:07
+
+
+INFO:root:
+ NEW RUN STARTING: 2022.07.06 09:08
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2022.01.25.txt; sales_channel: Amazon. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon exports\\EU 2022.01.25.txt', 'Amazon']
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-07-06 09:08 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 654/654 new/loaded orders for further processing
+INFO:root:Loaded file contains: 654. Further processing: 654 orders
+INFO:root:Current sku mapping dict has 1354 entries
+INFO:root:Orders inside valid: 654; invalid: 0
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
 INFO:root:Before updating workbook has 0 distinct sku codes / data rows excl. headers
 INFO:root:Writing updated values done. Saving, closing...
 INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
-INFO:root:Total of 76 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Amazon 22-07-06 09-08.txt
+INFO:root:New database backup inventory_lrun.db created on: 2022-07-06 09:08 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 654 new orders have been added to database, after exports were completed, closing connection to DB
 INFO:root:
-RUN ENDED: 2022.05.04 13:08
+RUN ENDED: 2022.07.06 09:08
 
 
-INFO:root:
- NEW RUN STARTING: 2022.07.05 13:57
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'\ufeff"Amazon Order Id","Merchant Order ID","Shipment ID","Shipment Item ID","Amazon Order Item ID","Merchant Order Item ID","Purchase Date","Payments Date","Shipment Date","Reporting Date","Buyer E-mail","Buyer Name","Buyer Phone Number","Merchant SKU","Title","Dispatched Quantity","Currency","Item Price","Item Tax","Delivery Price","Delivery Tax","Gift Wrap Price","Gift Wrapping Tax","Delivery Service Level","Recipient Name","Delivery Address 1","Delivery Address 2","Delivery Address 3","Delivery City/Town","Delivery County","Delivery Postcode","Delivery Country Code","Delivery Phone Number","Billing Address 1","Billing Address 2","Billing Address 3","Billing City/Town","Billing County","bill-postal-code","bill-country","Item Promo Discount","Shipment Promo Discount","Carrier","Tracking Number","Estimated Arrival Date","FC","Fulfilment Channel","Sales Channel"': '028-9173236-6673957,,"Dcng3J01X","DK6dPdNDR","19711530379099",,"2022-06-30T14:36:25+02:00","2022-06-30T21:42:57+02:00","2022-06-30T20:12:22+02:00","2022-06-30T22:12:28+02:00","st24dy2cpw97zdn@marketplace.amazon.de","","","(1 vnt.) WR78-FBA","U.S. Games Rider-Waite Tarot Deck","1","EUR","16.80","3.19","0.00","0.00","0.00","0.00","Expedited","","","","","Leipzig","Sachsen","04275","DE","","","","","","","","","0.00","0.00","UPS","1Z264A7R6849336415","2022-07-01T20:00:00+02:00","MUC3","AFN","Amazon.de"'} Err: 'sku'
-INFO:root:
- NEW RUN STARTING: 2022.07.05 14:15
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:
- NEW RUN STARTING: 2022.07.05 14:15
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:
- NEW RUN STARTING: 2022.07.05 14:20
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'Amazon Order Id': '028-9173236-6673957', 'Merchant Order ID': '', 'Shipment ID': 'Dcng3J01X', 'Shipment Item ID': 'DK6dPdNDR', 'Amazon Order Item ID': '19711530379099', 'Merchant Order Item ID': '', 'Purchase Date': '2022-06-30T14:36:25+02:00', 'Payments Date': '2022-06-30T21:42:57+02:00', 'Shipment Date': '2022-06-30T20:12:22+02:00', 'Reporting Date': '2022-06-30T22:12:28+02:00', 'Buyer E-mail': 'st24dy2cpw97zdn@marketplace.amazon.de', 'Buyer Name': '', 'Buyer Phone Number': '', 'Merchant SKU': '(1 vnt.) WR78-FBA', 'Title': 'U.S. Games Rider-Waite Tarot Deck', 'Dispatched Quantity': '1', 'Currency': 'EUR', 'Item Price': '16.80', 'Item Tax': '3.19', 'Delivery Price': '0.00', 'Delivery Tax': '0.00', 'Gift Wrap Price': '0.00', 'Gift Wrapping Tax': '0.00', 'Delivery Service Level': 'Expedited', 'Recipient Name': '', 'Delivery Address 1': '', 'Delivery Address 2': '', 'Delivery Address 3': '', 'Delivery City/Town': 'Leipzig', 'Delivery County': 'Sachsen', 'Delivery Postcode': '04275', 'Delivery Country Code': 'DE', 'Delivery Phone Number': '', 'Billing Address 1': '', 'Billing Address 2': '', 'Billing Address 3': '', 'Billing City/Town': '', 'Billing County': '', 'bill-postal-code': '', 'bill-country': '', 'Item Promo Discount': '0.00', 'Shipment Promo Discount': '0.00', 'Carrier': 'UPS', 'Tracking Number': '1Z264A7R6849336415', 'Estimated Arrival Date': '2022-07-01T20:00:00+02:00', 'FC': 'MUC3', 'Fulfilment Channel': 'AFN', 'Sales Channel': 'Amazon.de'} Err: 'sku'
-INFO:root:
- NEW RUN STARTING: 2022.07.05 14:22
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-DEBUG:root:warehouse2.csv detected encoding: UTF-8-SIG, delimiter <,>
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'Amazon Order Id': '028-9173236-6673957', 'Merchant Order ID': '', 'Shipment ID': 'Dcng3J01X', 'Shipment Item ID': 'DK6dPdNDR', 'Amazon Order Item ID': '19711530379099', 'Merchant Order Item ID': '', 'Purchase Date': '2022-06-30T14:36:25+02:00', 'Payments Date': '2022-06-30T21:42:57+02:00', 'Shipment Date': '2022-06-30T20:12:22+02:00', 'Reporting Date': '2022-06-30T22:12:28+02:00', 'Buyer E-mail': 'st24dy2cpw97zdn@marketplace.amazon.de', 'Buyer Name': '', 'Buyer Phone Number': '', 'Merchant SKU': '(1 vnt.) WR78-FBA', 'Title': 'U.S. Games Rider-Waite Tarot Deck', 'Dispatched Quantity': '1', 'Currency': 'EUR', 'Item Price': '16.80', 'Item Tax': '3.19', 'Delivery Price': '0.00', 'Delivery Tax': '0.00', 'Gift Wrap Price': '0.00', 'Gift Wrapping Tax': '0.00', 'Delivery Service Level': 'Expedited', 'Recipient Name': '', 'Delivery Address 1': '', 'Delivery Address 2': '', 'Delivery Address 3': '', 'Delivery City/Town': 'Leipzig', 'Delivery County': 'Sachsen', 'Delivery Postcode': '04275', 'Delivery Country Code': 'DE', 'Delivery Phone Number': '', 'Billing Address 1': '', 'Billing Address 2': '', 'Billing Address 3': '', 'Billing City/Town': '', 'Billing County': '', 'bill-postal-code': '', 'bill-country': '', 'Item Promo Discount': '0.00', 'Shipment Promo Discount': '0.00', 'Carrier': 'UPS', 'Tracking Number': '1Z264A7R6849336415', 'Estimated Arrival Date': '2022-07-01T20:00:00+02:00', 'FC': 'MUC3', 'Fulfilment Channel': 'AFN', 'Sales Channel': 'Amazon.de'} Err: 'sku'
-INFO:root:
- NEW RUN STARTING: 2022.07.05 14:25
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-DEBUG:root:147279019174.csv detected encoding: UTF-8-SIG, delimiter <;>
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'Amazon Order Id': '028-9173236-6673957', 'Merchant Order ID': '', 'Shipment ID': 'Dcng3J01X', 'Shipment Item ID': 'DK6dPdNDR', 'Amazon Order Item ID': '1.97115E+13', 'Merchant Order Item ID': '', 'Purchase Date': '2022.06.30 14:36', 'Payments Date': '2022.06.30 21:42', 'Shipment Date': '2022.06.30 20:12', 'Reporting Date': '2022.06.30 22:12', 'Buyer E-mail': 'st24dy2cpw97zdn@marketplace.amazon.de', 'Buyer Name': '', 'Buyer Phone Number': '', 'Merchant SKU': '(1 vnt.) WR78-FBA', 'Title': 'U.S. Games Rider-Waite Tarot Deck', 'Dispatched Quantity': '1', 'Currency': 'EUR', 'Item Price': '16.80', 'Item Tax': '3.19', 'Delivery Price': '0.00', 'Delivery Tax': '0.00', 'Gift Wrap Price': '0.00', 'Gift Wrapping Tax': '0.00', 'Delivery Service Level': 'Expedited', 'Recipient Name': '', 'Delivery Address 1': '', 'Delivery Address 2': '', 'Delivery Address 3': '', 'Delivery City/Town': 'Leipzig', 'Delivery County': 'Sachsen', 'Delivery Postcode': '4275', 'Delivery Country Code': 'DE', 'Delivery Phone Number': '', 'Billing Address 1': '', 'Billing Address 2': '', 'Billing Address 3': '', 'Billing City/Town': '', 'Billing County': '', 'bill-postal-code': '', 'bill-country': '', 'Item Promo Discount': '0.00', 'Shipment Promo Discount': '0.00', 'Carrier': 'UPS', 'Tracking Number': '1Z264A7R6849336415', 'Estimated Arrival Date': '2022.07.01 20:00', 'FC': 'MUC3', 'Fulfilment Channel': 'AFN', 'Sales Channel': 'Amazon.de'} Err: 'sku'
-INFO:root:
- NEW RUN STARTING: 2022.07.05 14:37
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-DEBUG:root:warehouse2.csv detected encoding: UTF-8-SIG, delimiter <,>
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'Amazon Order Id': '028-9173236-6673957', 'Merchant Order ID': '', 'Shipment ID': 'Dcng3J01X', 'Shipment Item ID': 'DK6dPdNDR', 'Amazon Order Item ID': '19711530379099', 'Merchant Order Item ID': '', 'Purchase Date': '2022-06-30T14:36:25+02:00', 'Payments Date': '2022-06-30T21:42:57+02:00', 'Shipment Date': '2022-06-30T20:12:22+02:00', 'Reporting Date': '2022-06-30T22:12:28+02:00', 'Buyer E-mail': 'st24dy2cpw97zdn@marketplace.amazon.de', 'Buyer Name': '', 'Buyer Phone Number': '', 'Merchant SKU': '(1 vnt.) WR78-FBA', 'Title': 'U.S. Games Rider-Waite Tarot Deck', 'Dispatched Quantity': '1', 'Currency': 'EUR', 'Item Price': '16.80', 'Item Tax': '3.19', 'Delivery Price': '0.00', 'Delivery Tax': '0.00', 'Gift Wrap Price': '0.00', 'Gift Wrapping Tax': '0.00', 'Delivery Service Level': 'Expedited', 'Recipient Name': '', 'Delivery Address 1': '', 'Delivery Address 2': '', 'Delivery Address 3': '', 'Delivery City/Town': 'Leipzig', 'Delivery County': 'Sachsen', 'Delivery Postcode': '04275', 'Delivery Country Code': 'DE', 'Delivery Phone Number': '', 'Billing Address 1': '', 'Billing Address 2': '', 'Billing Address 3': '', 'Billing City/Town': '', 'Billing County': '', 'bill-postal-code': '', 'bill-country': '', 'Item Promo Discount': '0.00', 'Shipment Promo Discount': '0.00', 'Carrier': 'UPS', 'Tracking Number': '1Z264A7R6849336415', 'Estimated Arrival Date': '2022-07-01T20:00:00+02:00', 'FC': 'MUC3', 'Fulfilment Channel': 'AFN', 'Sales Channel': 'Amazon.de'} Err: 'sku'
-INFO:root:
- NEW RUN STARTING: 2022.07.05 15:41
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-DEBUG:root:warehouse2.csv detected encoding: UTF-8-SIG, delimiter <,>
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'Amazon Order Id': '028-9173236-6673957', 'Merchant Order ID': '', 'Shipment ID': 'Dcng3J01X', 'Shipment Item ID': 'DK6dPdNDR', 'Amazon Order Item ID': '19711530379099', 'Merchant Order Item ID': '', 'Purchase Date': '2022-06-30T14:36:25+02:00', 'Payments Date': '2022-06-30T21:42:57+02:00', 'Shipment Date': '2022-06-30T20:12:22+02:00', 'Reporting Date': '2022-06-30T22:12:28+02:00', 'Buyer E-mail': 'st24dy2cpw97zdn@marketplace.amazon.de', 'Buyer Name': '', 'Buyer Phone Number': '', 'Merchant SKU': '(1 vnt.) WR78-FBA', 'Title': 'U.S. Games Rider-Waite Tarot Deck', 'Dispatched Quantity': '1', 'Currency': 'EUR', 'Item Price': '16.80', 'Item Tax': '3.19', 'Delivery Price': '0.00', 'Delivery Tax': '0.00', 'Gift Wrap Price': '0.00', 'Gift Wrapping Tax': '0.00', 'Delivery Service Level': 'Expedited', 'Recipient Name': '', 'Delivery Address 1': '', 'Delivery Address 2': '', 'Delivery Address 3': '', 'Delivery City/Town': 'Leipzig', 'Delivery County': 'Sachsen', 'Delivery Postcode': '04275', 'Delivery Country Code': 'DE', 'Delivery Phone Number': '', 'Billing Address 1': '', 'Billing Address 2': '', 'Billing Address 3': '', 'Billing City/Town': '', 'Billing County': '', 'bill-postal-code': '', 'bill-country': '', 'Item Promo Discount': '0.00', 'Shipment Promo Discount': '0.00', 'Carrier': 'UPS', 'Tracking Number': '1Z264A7R6849336415', 'Estimated Arrival Date': '2022-07-01T20:00:00+02:00', 'FC': 'MUC3', 'Fulfilment Channel': 'AFN', 'Sales Channel': 'Amazon.de'} Err: 'sku'
-INFO:root:
- NEW RUN STARTING: 2022.07.05 15:42
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-DEBUG:root:warehouse2.csv detected encoding: UTF-8-SIG, delimiter <,>
-INFO:root:
- NEW RUN STARTING: 2022.07.05 15:49
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-DEBUG:root:Sales channel: Amazon Warehouse, using proxy keys from SALES_CHANNEL_PROXY_KEYS with sales channel key
-DEBUG:root:warehouse2.csv detected encoding: UTF-8-SIG, delimiter <,>
-INFO:root:
- NEW RUN STARTING: 2022.07.05 15:51
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-DEBUG:root:Loading file: warehouse2.csv. Using proxy keys matching key: Amazon Warehouse in SALES_CHANNEL_PROXY_KEYS
-DEBUG:root:warehouse2.csv detected encoding: UTF-8-SIG, delimiter <,>
