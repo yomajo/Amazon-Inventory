@@ -244,7 +244,8 @@ def get_file_encoding_delimiter(fpath:str) -> tuple:
         text_contents = f_text.read()
         sniffer = csv.Sniffer()
         dialect = sniffer.sniff(text_contents)
-    return encoding, dialect.delimiter
+        delimiter = dialect.delimiter if not dialect.delimiter == ' ' else '\t'
+    return encoding, delimiter
 
 if __name__ == "__main__":
     pass

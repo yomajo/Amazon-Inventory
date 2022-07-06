@@ -18,12 +18,12 @@ logging.basicConfig(handlers=[logging.FileHandler(log_path, 'a', 'utf-8')], leve
 
 # GLOBAL VARIABLES
 TEST_CASES = [
-    {'channel': 'Amazon', 'file': r'C:\Coding\Ebay\Working\Backups\Amazon exports\COM 2022.03.10.txt'},
+    {'channel': 'Amazon', 'file': r'C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2022.02.23.txt'},
     {'channel': 'Amazon Warehouse', 'file': r'C:\Coding\Ebay\Working\Backups\Amazon warehouse csv\warehouse2.csv'},
     {'channel': 'Etsy', 'file': r'C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4 (2).csv'},
     ]
 
-TESTING = False
+TESTING = True
 TEST_CASE = TEST_CASES[0]
 
 SALES_CHANNEL = TEST_CASE['channel']
@@ -34,7 +34,7 @@ EXPECTED_SYS_ARGS = 3
 def get_cleaned_orders(source_file:str, sales_channel:str, proxy_keys:dict) -> list:
     '''returns cleaned orders (as cleaned in clean_orders func) from source_file arg path'''
     encoding, delimiter = get_file_encoding_delimiter(source_file)
-    logging.debug(f'{os.path.basename(source_file)} detected encoding: {encoding}, delimiter <{delimiter}>')
+    logging.info(f'{os.path.basename(source_file)} detected encoding: {encoding}, delimiter <{delimiter}>')
     raw_orders = get_raw_orders(source_file, encoding, delimiter)
     if TESTING:
         replace_old_testing_json(raw_orders, 'DEBUG_raw_orders.json')
