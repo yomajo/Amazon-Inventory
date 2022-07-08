@@ -6,7 +6,7 @@ import csv
 import os
 import re
 from datetime import datetime
-import chardet
+import charset_normalizer
 from openpyxl.utils import get_column_letter
 from constants import VBA_ERROR_ALERT, COUNTRY_CODES, VBA_KEYERROR_ALERT, EXPORT_FILE
 
@@ -232,10 +232,11 @@ def adjust_col_widths(ws:object, col_widths:dict):
 def get_file_encoding_delimiter(fpath:str) -> tuple:
     '''returns tuple of file encoding and delimiter'''
     with open(fpath, mode='rb') as f_as_bytes:
-        byte_contents = f_as_bytes.read()
         try:
-            enc_data = chardet.detect(byte_contents)
+            byte_contents = f_as_bytes.read()
+            enc_data = charset_normalizer.detect(byte_contents)
             encoding = enc_data['encoding']
+            logging.info(f'Detected file encoding: {encoding}')
         except Exception as e:
             logging.warning(f'chardet err: {e} when figuring out file {os.path.basename(fpath)} encoding. Defaulting to utf-8')
             encoding = 'utf-8'

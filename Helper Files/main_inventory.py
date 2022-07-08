@@ -18,12 +18,12 @@ logging.basicConfig(handlers=[logging.FileHandler(log_path, 'a', 'utf-8')], leve
 
 # GLOBAL VARIABLES
 TEST_CASES = [
-    {'channel': 'Amazon', 'file': r'C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2022.02.23.txt'},
+    {'channel': 'Amazon', 'file': r'C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2022.07.07.txt'},
     {'channel': 'Amazon Warehouse', 'file': r'C:\Coding\Ebay\Working\Backups\Amazon warehouse csv\warehouse2.csv'},
     {'channel': 'Etsy', 'file': r'C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-4 (2).csv'},
     ]
 
-TESTING = True
+TESTING = False
 TEST_CASE = TEST_CASES[0]
 
 SALES_CHANNEL = TEST_CASE['channel']

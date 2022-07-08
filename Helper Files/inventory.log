@@ -1,127 +1,83 @@
 INFO:root:
- NEW RUN STARTING: 2022.07.06 09:40
-INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2022.02.23.txt; sales_channel: Amazon. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon exports\\EU 2022.02.23.txt', 'Amazon']
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'order-id\torder-item-id\tpurchase-date\tpayments-date\tbuyer-email\tbuyer-name\tbuyer-phone-number\tsku\tproduct-name\tquantity-purchased\tcurrency\titem-price\titem-tax\tshipping-price\tshipping-tax\tship-service-level\trecipient-name\tship-address-1\tship-address-2\tship-address-3\tship-city\tship-state\tship-postal-code\tship-country\tship-phone-number\tdelivery-start-date\tdelivery-end-date\tdelivery-time-zone\tdelivery-Instructions\tsales-channel\tis-business-order\tpurchase-order-number\tprice-designation\tshipment-status\tis-iba': '407-1589120-9649946\t26445576423107\t2022-02-16T06:08:03+00:00\t2022-02-16T06:08:03+00:00\tdp06d7cqf52nlgh@marketplace.amazon.nl\tK.Pansters\t0031778504339\t(10', None: ['vnt.)', 'LR1131', '10BL', 'L1131F', 'VINNIC', 'AG10\tVinnic', 'AG10', 'L1131', '189', 'V10GA', 'RW89', 'D189', 'alkaline', 'batterijen', 'voor', 'horloges,', 'rekenmachine,', 'speelgoed,', 'laser,', 'wandklokken,', 'thermometer', 'en', 'vele', 'andere', 'appar\t1\tEUR\t3.59\t0.62\t0.50\t0.09\tStandard\tDr.', 'K.', 'Pansters\tPastoor', 'Vranckenlaan', '4A\t\t\tReuver\t\t5953CP\tNL\t0031778504339\t\t\t\t\tAmazon.nl\tfalse\t\t\t\tfalse']} Err: 'sku'
+ NEW RUN STARTING: 2022.07.08 12:04
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2022.07.07.txt; sales_channel: Amazon. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon exports\\EU 2022.07.07.txt', 'Amazon']
+INFO:root:Detected file encoding: utf-8
+INFO:root:EU 2022.07.07.txt detected encoding: utf-8, delimiter <	>
+INFO:root:Database has been created at C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory.db
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-07-08 12:04 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 1040/1040 new/loaded orders for further processing
+INFO:root:Loaded file contains: 1040. Further processing: 1040 orders
+INFO:root:Current sku mapping dict has 1474 entries
+INFO:root:Orders inside valid: 1040; invalid: 0
+INFO:root:Helper file Inventory Reduction.xlsx successfully created, opening...
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Amazon 22-07-08 12-04.txt
+INFO:root:New database backup inventory_lrun.db created on: 2022-07-08 12:04 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 1040 new orders have been added to database, after exports were completed, closing connection to DB
 INFO:root:
- NEW RUN STARTING: 2022.07.06 09:43
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'order-id\torder-item-id\tpurchase-date\tpayments-date\tbuyer-email\tbuyer-name\tbuyer-phone-number\tsku\tproduct-name\tquantity-purchased\tcurrency\titem-price\titem-tax\tshipping-price\tshipping-tax\tship-service-level\trecipient-name\tship-address-1\tship-address-2\tship-address-3\tship-city\tship-state\tship-postal-code\tship-country\tship-phone-number\tdelivery-start-date\tdelivery-end-date\tdelivery-time-zone\tdelivery-Instructions\tsales-channel\tis-business-order\tpurchase-order-number\tprice-designation\tshipment-status\tis-iba': '407-1589120-9649946\t26445576423107\t2022-02-16T06:08:03+00:00\t2022-02-16T06:08:03+00:00\tdp06d7cqf52nlgh@marketplace.amazon.nl\tK.Pansters\t0031778504339\t(10', None: ['vnt.)', 'LR1131', '10BL', 'L1131F', 'VINNIC', 'AG10\tVinnic', 'AG10', 'L1131', '189', 'V10GA', 'RW89', 'D189', 'alkaline', 'batterijen', 'voor', 'horloges,', 'rekenmachine,', 'speelgoed,', 'laser,', 'wandklokken,', 'thermometer', 'en', 'vele', 'andere', 'appar\t1\tEUR\t3.59\t0.62\t0.50\t0.09\tStandard\tDr.', 'K.', 'Pansters\tPastoor', 'Vranckenlaan', '4A\t\t\tReuver\t\t5953CP\tNL\t0031778504339\t\t\t\t\tAmazon.nl\tfalse\t\t\t\tfalse']} Err: 'sku'
+RUN ENDED: 2022.07.08 12:04
+
+
 INFO:root:
- NEW RUN STARTING: 2022.07.06 09:43
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:EU 2022.02.23.txt detected encoding: utf-8, delimiter < >
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'order-id\torder-item-id\tpurchase-date\tpayments-date\tbuyer-email\tbuyer-name\tbuyer-phone-number\tsku\tproduct-name\tquantity-purchased\tcurrency\titem-price\titem-tax\tshipping-price\tshipping-tax\tship-service-level\trecipient-name\tship-address-1\tship-address-2\tship-address-3\tship-city\tship-state\tship-postal-code\tship-country\tship-phone-number\tdelivery-start-date\tdelivery-end-date\tdelivery-time-zone\tdelivery-Instructions\tsales-channel\tis-business-order\tpurchase-order-number\tprice-designation\tshipment-status\tis-iba': '407-1589120-9649946\t26445576423107\t2022-02-16T06:08:03+00:00\t2022-02-16T06:08:03+00:00\tdp06d7cqf52nlgh@marketplace.amazon.nl\tK.Pansters\t0031778504339\t(10', None: ['vnt.)', 'LR1131', '10BL', 'L1131F', 'VINNIC', 'AG10\tVinnic', 'AG10', 'L1131', '189', 'V10GA', 'RW89', 'D189', 'alkaline', 'batterijen', 'voor', 'horloges,', 'rekenmachine,', 'speelgoed,', 'laser,', 'wandklokken,', 'thermometer', 'en', 'vele', 'andere', 'appar\t1\tEUR\t3.59\t0.62\t0.50\t0.09\tStandard\tDr.', 'K.', 'Pansters\tPastoor', 'Vranckenlaan', '4A\t\t\tReuver\t\t5953CP\tNL\t0031778504339\t\t\t\t\tAmazon.nl\tfalse\t\t\t\tfalse']} Err: 'sku'
-INFO:root:
- NEW RUN STARTING: 2022.07.06 09:46
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:COM 2022.03.10.txt detected encoding: utf-8, delimiter <	>
-INFO:root:Database has been created at c:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory.db
-INFO:root:Returning 120/120 new/loaded orders for further processing
-INFO:root:Loaded file contains: 120. Further processing: 120 orders
-INFO:root:Current sku mapping dict has 1354 entries
-INFO:root:Orders inside valid: 120; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 15 distinct sku codes / data rows excl. headers
+ NEW RUN STARTING: 2022.07.08 12:05
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-7 08.csv; sales_channel: Etsy. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Etsy\\EtsySoldOrders2022-7 08.csv', 'Etsy']
+INFO:root:Detected file encoding: utf-8
+INFO:root:EtsySoldOrders2022-7 08.csv detected encoding: utf-8, delimiter <,>
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-07-08 12:05 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 92/92 new/loaded orders for further processing
+INFO:root:Loaded file contains: 92. Further processing: 92 orders
+INFO:root:Etsy order q-ty and skus may yield various combinations. Qty: 4, skus: ['10020848', '10020849', '1 vnt. CY86', '1 vnt. EX57', '1 vnt. EX11']. Ordr being added to invalid list
+INFO:root:Orders inside valid: 91; invalid: 1
+INFO:root:Invalid orders exported at C:\Coding\Ebay\Custom Label Sorting\Etsy invalid_orders 2022.07.08 12.05.txt and opened.
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 402 distinct sku codes / data rows excl. headers
 INFO:root:Writing updated values done. Saving, closing...
 INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
-INFO:root:Total of 120 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Etsy 22-07-08 12-05.csv
+INFO:root:New database backup inventory_lrun.db created on: 2022-07-08 12:05 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 92 new orders have been added to database, after exports were completed, closing connection to DB
 INFO:root:
-RUN ENDED: 2022.07.06 09:46
+RUN ENDED: 2022.07.08 12:05
 
 
 INFO:root:
- NEW RUN STARTING: 2022.07.06 09:47
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:COM 2021.12.01.txt detected encoding: utf-8, delimiter <	>
-INFO:root:Returning 68/68 new/loaded orders for further processing
-INFO:root:Loaded file contains: 68. Further processing: 68 orders
-INFO:root:Current sku mapping dict has 1354 entries
-INFO:root:Orders inside valid: 68; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 75 distinct sku codes / data rows excl. headers
+ NEW RUN STARTING: 2022.07.08 12:06
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon warehouse csv\147279019174.csv; sales_channel: Amazon Warehouse. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon warehouse csv\\147279019174.csv', 'Amazon Warehouse']
+INFO:root:Detected file encoding: UTF-8-SIG
+INFO:root:147279019174.csv detected encoding: UTF-8-SIG, delimiter <;>
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-07-08 12:06 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 132/132 new/loaded orders for further processing
+INFO:root:Loaded file contains: 132. Further processing: 132 orders
+INFO:root:Current sku mapping dict has 1474 entries
+INFO:root:Orders inside valid: 132; invalid: 0
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 0 distinct sku codes / data rows excl. headers
 INFO:root:Writing updated values done. Saving, closing...
 INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
-INFO:root:Total of 68 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Amazon Warehouse 22-07-08 12-06.csv
+INFO:root:New database backup inventory_lrun.db created on: 2022-07-08 12:06 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 132 new orders have been added to database, after exports were completed, closing connection to DB
 INFO:root:
-RUN ENDED: 2022.07.06 09:47
+RUN ENDED: 2022.07.08 12:06
 
 
 INFO:root:
- NEW RUN STARTING: 2022.07.06 09:48
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:EU 2021.11.16.txt detected encoding: utf-8, delimiter <	>
-INFO:root:Returning 344/344 new/loaded orders for further processing
-INFO:root:Loaded file contains: 344. Further processing: 344 orders
-INFO:root:Current sku mapping dict has 1354 entries
-INFO:root:Orders inside valid: 344; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 100 distinct sku codes / data rows excl. headers
+ NEW RUN STARTING: 2022.07.08 12:06
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Amazon exports\EU 2021.12.20.txt; sales_channel: Amazon. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Amazon exports\\EU 2021.12.20.txt', 'Amazon']
+INFO:root:Detected file encoding: utf-8
+INFO:root:EU 2021.12.20.txt detected encoding: utf-8, delimiter <	>
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-07-08 12:06 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 245/245 new/loaded orders for further processing
+INFO:root:Loaded file contains: 245. Further processing: 245 orders
+INFO:root:Current sku mapping dict has 1474 entries
+INFO:root:Orders inside valid: 245; invalid: 0
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 0 distinct sku codes / data rows excl. headers
 INFO:root:Writing updated values done. Saving, closing...
 INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
-INFO:root:Total of 344 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Amazon 22-07-08 12-06.txt
+INFO:root:New database backup inventory_lrun.db created on: 2022-07-08 12:06 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 245 new orders have been added to database, after exports were completed, closing connection to DB
 INFO:root:
-RUN ENDED: 2022.07.06 09:48
-
-
-INFO:root:
- NEW RUN STARTING: 2022.07.06 09:49
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:EU 2022.05.04.txt detected encoding: utf-8, delimiter <	>
-INFO:root:Returning 76/76 new/loaded orders for further processing
-INFO:root:Loaded file contains: 76. Further processing: 76 orders
-INFO:root:Current sku mapping dict has 1354 entries
-INFO:root:Orders inside valid: 76; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 238 distinct sku codes / data rows excl. headers
-INFO:root:Writing updated values done. Saving, closing...
-INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
-INFO:root:Total of 76 new orders have been added to database, after exports were completed, closing connection to DB
-INFO:root:
-RUN ENDED: 2022.07.06 09:49
-
-
-INFO:root:
- NEW RUN STARTING: 2022.07.06 09:49
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:EU 2022.02.07.txt detected encoding: utf-8, delimiter <	>
-INFO:root:Returning 341/341 new/loaded orders for further processing
-INFO:root:Loaded file contains: 341. Further processing: 341 orders
-INFO:root:Current sku mapping dict has 1354 entries
-INFO:root:Orders inside valid: 341; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 280 distinct sku codes / data rows excl. headers
-INFO:root:Writing updated values done. Saving, closing...
-INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
-INFO:root:Total of 341 new orders have been added to database, after exports were completed, closing connection to DB
-INFO:root:
-RUN ENDED: 2022.07.06 09:50
-
-
-INFO:root:
- NEW RUN STARTING: 2022.07.06 09:50
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:EU 2022.02.23.txt detected encoding: utf-8, delimiter < >
-CRITICAL:root:Failed while cleaning loaded orders. Last order: {'order-id\torder-item-id\tpurchase-date\tpayments-date\tbuyer-email\tbuyer-name\tbuyer-phone-number\tsku\tproduct-name\tquantity-purchased\tcurrency\titem-price\titem-tax\tshipping-price\tshipping-tax\tship-service-level\trecipient-name\tship-address-1\tship-address-2\tship-address-3\tship-city\tship-state\tship-postal-code\tship-country\tship-phone-number\tdelivery-start-date\tdelivery-end-date\tdelivery-time-zone\tdelivery-Instructions\tsales-channel\tis-business-order\tpurchase-order-number\tprice-designation\tshipment-status\tis-iba': '407-1589120-9649946\t26445576423107\t2022-02-16T06:08:03+00:00\t2022-02-16T06:08:03+00:00\tdp06d7cqf52nlgh@marketplace.amazon.nl\tK.Pansters\t0031778504339\t(10', None: ['vnt.)', 'LR1131', '10BL', 'L1131F', 'VINNIC', 'AG10\tVinnic', 'AG10', 'L1131', '189', 'V10GA', 'RW89', 'D189', 'alkaline', 'batterijen', 'voor', 'horloges,', 'rekenmachine,', 'speelgoed,', 'laser,', 'wandklokken,', 'thermometer', 'en', 'vele', 'andere', 'appar\t1\tEUR\t3.59\t0.62\t0.50\t0.09\tStandard\tDr.', 'K.', 'Pansters\tPastoor', 'Vranckenlaan', '4A\t\t\tReuver\t\t5953CP\tNL\t0031778504339\t\t\t\t\tAmazon.nl\tfalse\t\t\t\tfalse']} Err: 'sku'
-INFO:root:
- NEW RUN STARTING: 2022.07.06 09:53
-WARNING:root:--- RUNNING IN TESTING MODE. Using hardcoded args---
-INFO:root:EU 2022.02.23.txt detected encoding: utf-8, delimiter <	>
-INFO:root:Returning 345/345 new/loaded orders for further processing
-INFO:root:Loaded file contains: 345. Further processing: 345 orders
-INFO:root:Current sku mapping dict has 1354 entries
-INFO:root:Orders inside valid: 345; invalid: 0
-INFO:root:Testing mode: True. Change behaviour in export_orders method in ParseOrders class
-INFO:root:Backup created at: c:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching c:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
-INFO:root:Before updating workbook has 401 distinct sku codes / data rows excl. headers
-INFO:root:Writing updated values done. Saving, closing...
-INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
-INFO:root:Total of 345 new orders have been added to database, after exports were completed, closing connection to DB
-INFO:root:
-RUN ENDED: 2022.07.06 09:53
+RUN ENDED: 2022.07.08 12:06
 
 
