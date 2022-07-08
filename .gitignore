@@ -21,3 +21,5 @@ TODO.txt
 *.spec
 *.db
 *.xlsm
+Pipfile
+Pipfile.lock
