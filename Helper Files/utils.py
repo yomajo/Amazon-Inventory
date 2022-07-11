@@ -238,7 +238,7 @@ def get_file_encoding_delimiter(fpath:str) -> tuple:
             encoding = enc_data['encoding']
             logging.info(f'Detected file encoding: {encoding}')
         except Exception as e:
-            logging.warning(f'chardet err: {e} when figuring out file {os.path.basename(fpath)} encoding. Defaulting to utf-8')
+            logging.warning(f'charset err: {e} when figuring out file {os.path.basename(fpath)} encoding. Defaulting to utf-8')
             encoding = 'utf-8'
 
     with open(fpath, mode='r', encoding=encoding) as f_text:
