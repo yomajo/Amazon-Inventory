@@ -81,3 +81,23 @@ INFO:root:
 RUN ENDED: 2022.07.08 12:06
 
 
+INFO:root:
+ NEW RUN STARTING: 2022.08.16 18:08
+INFO:root:Accepted sys args on launch: source_fpath: C:\Coding\Ebay\Working\Backups\Etsy\EtsySoldOrders2022-8-16.csv; sales_channel: Etsy. Whole sys.argv: ['C:\\Coding\\Ebay\\Custom Label Sorting\\Helper Files\\main_inventory.exe', 'C:\\Coding\\Ebay\\Working\\Backups\\Etsy\\EtsySoldOrders2022-8-16.csv', 'Etsy']
+INFO:root:Detected file encoding: utf-8
+INFO:root:EtsySoldOrders2022-8-16.csv detected encoding: utf-8, delimiter <,>
+INFO:root:New database backup inventory_b4lrun.db created on: 2022-08-16 18:08 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_b4lrun.db
+INFO:root:Returning 216/216 new/loaded orders for further processing
+INFO:root:Loaded file contains: 216. Further processing: 216 orders
+INFO:root:Orders inside valid: 216; invalid: 0
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\Inventory Reduction b4lastrun.xlsx, before touching C:\Coding\Ebay\Custom Label Sorting\Inventory Reduction.xlsx
+INFO:root:Before updating workbook has 0 distinct sku codes / data rows excl. headers
+INFO:root:Writing updated values done. Saving, closing...
+INFO:root:Helper file Inventory Reduction.xlsx successfully updated, opening....
+INFO:root:Backup created at: C:\Coding\Ebay\Custom Label Sorting\Helper Files\src files\Etsy 22-08-16 18-08.csv
+INFO:root:New database backup inventory_lrun.db created on: 2022-08-16 18:08 location: C:\Coding\Ebay\Custom Label Sorting\Helper Files\inventory_lrun.db
+INFO:root:Total of 216 new orders have been added to database, after exports were completed, closing connection to DB
+INFO:root:
+RUN ENDED: 2022.08.16 18:08
+
+
